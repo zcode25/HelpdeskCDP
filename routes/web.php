@@ -29,6 +29,8 @@ Route::controller(HomeController::class)->group(function() {
 
 Route::controller(UserController::class)->group(function() {
     Route::get('/admin/user', 'index');
+    Route::get('/admin/user/create', 'create');
+    Route::post('/admin/user/store', 'store');
 });
 
 Route::controller(DepartemenController::class)->group(function() {

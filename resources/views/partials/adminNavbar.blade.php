@@ -6,9 +6,6 @@
       </a>
 
       <ul class="sidebar-nav">
-        <li class="sidebar-header">
-          Dashboard
-        </li>
 
         <li class="sidebar-item {{ Request::is('admin/home*') ? 'active' : '' }}">
           <a class="sidebar-link" href="/admin/home">
@@ -16,35 +13,15 @@
           </a>
         </li>
 
-        <li class="sidebar-header">
-          User
-        </li>
-
-        <li class="sidebar-item {{ Request::is('admin/register*') ? 'active' : '' }}">
-          <a class="sidebar-link" href="/admin/register">
-            <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Add User</span>
-          </a>
-        </li>
-
         <li class="sidebar-item {{ Request::is('admin/user*') ? 'active' : '' }}">
           <a class="sidebar-link" href="/admin/user">
-            <i class="align-middle" data-feather="user"></i> <span class="align-middle">List User</span>
-          </a>
-        </li>
-
-        <li class="sidebar-header">
-          Departement
-        </li>
-
-        <li class="sidebar-item {{ Request::is('admin/createDepartement*') ? 'active' : '' }}">
-          <a class="sidebar-link" href="/admin/createDepartement">
-            <i class="align-middle" data-feather="plus-square"></i> <span class="align-middle">Add Departement</span>
+            <i class="align-middle" data-feather="user"></i> <span class="align-middle">User</span>
           </a>
         </li>
 
         <li class="sidebar-item {{ Request::is('admin/departemen*') ? 'active' : '' }}">
           <a class="sidebar-link" href="/admin/departemen">
-            <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">List Departement</span>
+            <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Departemen</span>
           </a>
         </li>
 

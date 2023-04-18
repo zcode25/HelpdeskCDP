@@ -21,6 +21,7 @@ class User extends Authenticatable
         'nik',
         'nama',
         'email',
+        'tel',
         'departemen',
         'password',
         'tipe',
