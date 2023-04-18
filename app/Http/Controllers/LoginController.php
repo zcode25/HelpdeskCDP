@@ -21,19 +21,28 @@ class LoginController extends Controller
         if (Auth::attempt(['email' =>  $credentials['email'], 'password' => $credentials['password'], 'tipe' => 'karyawan'])) {
             $request->session()->regenerate();
  
-            return 'karyawan';
-            // return redirect()->intended('/home');
+            return redirect()->intended('/home');
         }
 
         if (Auth::attempt(['email' =>  $credentials['email'], 'password' => $credentials['password'], 'tipe' => 'admin'])) {
             $request->session()->regenerate();
             
-            return 'admin';
-            // return redirect()->intended('/admin/home');
+            return redirect()->intended('/admin/home');
         }
 
         return back()->with([
             'loginError' => 'Login field!',
         ]);
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }

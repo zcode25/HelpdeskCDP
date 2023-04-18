@@ -18,10 +18,15 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'nik',
+        'nama',
         'email',
+        'departemen',
         'password',
+        'tipe',
     ];
+
+    protected $primaryKey = 'nik';
 
     /**
      * The attributes that should be hidden for serialization.
@@ -41,4 +46,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function departemen() {
+        return $this->belongsTo(Departemen::class, 'departemen', 'kodeDepartemen');
+    }
 }
