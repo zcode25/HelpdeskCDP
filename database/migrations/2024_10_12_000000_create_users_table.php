@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreign('departemen')->references('kodeDepartemen')->on('departemens')->onUpdate('cascade')->onDelete('restrict');
             $table->string('email', 100)->unique();
             $table->string('tel', 15)->unique();
-            $table->enum('tipe', ['karyawan', 'admin'])->default('karyawan');
+            $table->enum('tipe', ['karyawan', 'admin', 'teknisi', 'pimpinan'])->default('karyawan');
             $table->string('password');
             $table->timestamps();
         });

@@ -39,4 +39,41 @@ class UserController extends Controller
 
         return redirect('/admin/user')->with('success', 'Data uploaded successfully');
     }
+
+    public function edit(User $user) {
+        return view('admin.user.edit', [
+            'user'          => $user,
+            'departemens'   => Departemen::all()
+        ]);
+    }
+
+    public function update(Request $request, User $user) {
+        $validatedData = $request->validate([
+            'nik'              => 'required|max:5',
+            'nama'              => 'required|max:50',
+            'departemen'       => 'required',
+            'email'             => 'required|email:dns',
+            'tel'             => 'required|max:15',
+        ]);
+
+        if ($request->email == $user->email) {
+            $validatedData['email'] = $request->email;
+        }
+
+        User::where('nik', $user->nik)->update($validatedData);
+
+        return redirect('/admin/user')->with('success', 'Data berhasil diubah');
+    }
+
+    public function destroy(User $user) {
+        try{
+            User::where('nik', $user->nik)->delete();
+        } catch (\Illuminate\Database\QueryException){
+            return back()->with([
+                'error' => 'Data cannot be deleted, because the data is still needed!',
+            ]);
+        }
+
+        return redirect('/admin/user')->with('success', 'Data user berhasil dihapus');
+    }
 }

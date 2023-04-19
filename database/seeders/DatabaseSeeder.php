@@ -25,19 +25,19 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         Departemen::create([
-            'kodeDepartemen'    => 'K0001',
+            'kodeDepartemen'    => 'D0001',
             'namaDepartemen'    => 'IT',
         ]);
 
         Departemen::create([
-            'kodeDepartemen'    => 'K0002',
+            'kodeDepartemen'    => 'D0002',
             'namaDepartemen'    => 'Akutansi',
         ]);
 
         User::create([
             'nik'           => '12345',
             'nama'          => 'Adam Zein',
-            'departemen'    => 'K0001',
+            'departemen'    => 'D0001',
             'email'         => 'adamzein@gmail.com',
             'tel'           => '6281316671373',
             'tipe'          => 'admin',
@@ -47,7 +47,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'nik'           => '12346',
             'nama'          => 'Jamal',
-            'departemen'    => 'K0002',
+            'departemen'    => 'D0002',
             'email'         => 'jamal@gmail.com',
             'tel'           => '6281316671374',
             'tipe'          => 'karyawan',

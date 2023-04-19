@@ -9,6 +9,13 @@ class Departemen extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'kodeDepartemen',
+        'namaDepartemen',
+    ];
+
+    // protected $primaryKey = 'kodeDepartemen';
+
     public function user() {
         return $this->hasMany(User::class);
     }

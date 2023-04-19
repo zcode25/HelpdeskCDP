@@ -31,8 +31,16 @@ Route::controller(UserController::class)->group(function() {
     Route::get('/admin/user', 'index');
     Route::get('/admin/user/create', 'create');
     Route::post('/admin/user/store', 'store');
+    Route::get('/admin/user/edit/{user:nik}', 'edit');
+    Route::post('/admin/user/update/{user:nik}', 'update');
+    Route::delete('/admin/user/destroy/{user:nik}', 'destroy');
 });
 
 Route::controller(DepartemenController::class)->group(function() {
     Route::get('/admin/departemen', 'index');
+    Route::get('/admin/departemen/create', 'create');
+    Route::post('/admin/departemen/store', 'store');
+    Route::get('/admin/departemen/edit/{departemen:kodeDepartemen}', 'edit');
+    Route::post('/admin/departemen/update/{departemen:kodeDepartemen}', 'update');
+    Route::delete('/admin/departemen/destroy/{departemen:kodeDepartemen}', 'destroy');
 });
