@@ -4,8 +4,11 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\Departemen;
 use App\Models\User;
+use App\Models\Tiket;
+use App\Models\Departemen;
+use App\Models\DetailTiket;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -52,6 +55,26 @@ class DatabaseSeeder extends Seeder
             'tel'           => '6281316671374',
             'tipe'          => 'karyawan',
             'password'      => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+        ]);
+
+        Tiket::create([
+            'noTiket'           => 'CDP/IT/20/04/23/0001',
+            'user'              => '12346',
+            'permintaan'        => 'Printer Rusak',
+            'uraianPermintaan'  => 'Hasil printer tidak jelas',
+            'prioritas'         => 'B'
+        ]);
+
+        DetailTiket::create([
+            'uuidTiket'         => Str::uuid(),
+            'tiket'             => 'CDP/IT/20/04/23/0001',
+            'status'            => 'Terkirim',
+        ]);
+
+        DetailTiket::create([
+            'uuidTiket'         => Str::uuid(),
+            'tiket'             => 'CDP/IT/20/04/23/0001',
+            'status'            => 'Diterima',
         ]);
     }
 }
