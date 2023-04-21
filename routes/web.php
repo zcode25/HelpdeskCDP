@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DepartemenController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\TiketContoller;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,11 @@ Route::controller(LoginController::class)->group(function() {
 
 Route::controller(HomeController::class)->group(function() {
     Route::get('/admin/home', 'index')->middleware('auth');
+});
+
+Route::controller(TiketContoller::class)->group(function() {
+    Route::get('/admin/tiket', 'index');
+    Route::get('/admin/tiket/konfirmasi/CDP/IT/20/04/23/0001', 'konfirmasi');
 });
 
 Route::controller(UserController::class)->group(function() {

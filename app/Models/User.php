@@ -51,4 +51,10 @@ class User extends Authenticatable
     public function departemen() {
         return $this->belongsTo(Departemen::class, 'departemen', 'kodeDepartemen');
     }
+
+    public function tiket() {
+        return $this->hasMany(Tiket::class);
+    }
+
+
 }

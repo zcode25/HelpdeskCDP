@@ -57,24 +57,43 @@ class DatabaseSeeder extends Seeder
             'password'      => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
         ]);
 
+        User::create([
+            'nik'           => '12347',
+            'nama'          => 'Udin',
+            'departemen'    => 'D0001',
+            'email'         => 'udin@gmail.com',
+            'tel'           => '6281316671375',
+            'tipe'          => 'teknisi',
+            'password'      => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+        ]);
+
         Tiket::create([
+            'idTiket'           => Str::uuid(),
             'noTiket'           => 'CDP/IT/20/04/23/0001',
             'user'              => '12346',
+            // 'teknisi'           => '12347',
             'permintaan'        => 'Printer Rusak',
             'uraianPermintaan'  => 'Hasil printer tidak jelas',
-            'prioritas'         => 'B'
+            // 'prioritas'         => 'B',
+            'status'            => 'Dikirim',
         ]);
 
-        DetailTiket::create([
-            'uuidTiket'         => Str::uuid(),
-            'tiket'             => 'CDP/IT/20/04/23/0001',
-            'status'            => 'Terkirim',
-        ]);
+        // DetailTiket::create([
+        //     'idDetailTiket'     => Str::uuid(),
+        //     'tiket'             => 'CDP/IT/20/04/23/0001',
+        //     'status'            => 'Dikirim',
+        // ]);
 
-        DetailTiket::create([
-            'uuidTiket'         => Str::uuid(),
-            'tiket'             => 'CDP/IT/20/04/23/0001',
-            'status'            => 'Diterima',
-        ]);
+        // DetailTiket::create([
+        //     'uuidTiket'         => Str::uuid(),
+        //     'tiket'             => 'CDP/IT/20/04/23/0001',
+        //     'status'            => 'Diterima',
+        // ]);
+
+        // DetailTiket::create([
+        //     'uuidTiket'         => Str::uuid(),
+        //     'tiket'             => 'CDP/IT/20/04/23/0001',
+        //     'status'            => 'Dikerjakan',
+        // ]);
     }
 }

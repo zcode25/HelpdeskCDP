@@ -13,6 +13,12 @@
           </a>
         </li>
 
+        <li class="sidebar-item {{ Request::is('admin/tiket*') ? 'active' : '' }}">
+          <a class="sidebar-link" href="/admin/tiket">
+            <i class="align-middle" data-feather="layers"></i> <span class="align-middle">Tiket</span>
+          </a>
+        </li>
+
         <li class="sidebar-item {{ Request::is('admin/user*') ? 'active' : '' }}">
           <a class="sidebar-link" href="/admin/user">
             <i class="align-middle" data-feather="user"></i> <span class="align-middle">User</span>

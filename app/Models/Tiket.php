@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Tiket extends Model
 {
     use HasFactory;
+
+    // protected $primaryKey = 'noTiket';
+
+    public function detailTiket() {
+        return $this->hasMany(DetailTiket::class);
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class, 'user', 'nik');
+    }
+
+    public function teknisi() {
+        return $this->belongsTo(User::class, 'teknisi', 'nik');
+    }
 }

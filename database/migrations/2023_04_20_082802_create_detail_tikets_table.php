@@ -14,11 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('detail_tikets', function (Blueprint $table) {
-            $table->uuid('uuidTiket')->primary();
-            // $table->id();
-            $table->char('tiket', 20);
-            $table->foreign('tiket')->references('noTiket')->on('tikets')->onUpdate('cascade')->onDelete('restrict');
-            $table->enum('status', ['Terkirim', 'Diterima', 'Ditolak', 'Dikerjakan', 'Ditutup', 'selesai']);
+            $table->uuid('idDetailTiket')->primary();
+            // $table->char('tiket', 20);
+            // $table->foreign('tiket')->references('idTiket')->on('tikets')->onUpdate('cascade')->onDelete('restrict');
+            $table->enum('status', ['Dikirim', 'Diterima', 'Ditolak', 'Dikerjakan', 'Ditutup', 'selesai']);
             $table->timestamps();
         });
     }
