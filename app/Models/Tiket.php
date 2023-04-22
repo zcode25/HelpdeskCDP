@@ -10,6 +10,17 @@ class Tiket extends Model
     use HasFactory;
 
     // protected $primaryKey = 'noTiket';
+    protected $fillable = [
+        'idTiket',
+        'noTiket',
+        'user',
+        'teknisi',
+        'permintaan',
+        'uraianPermintaan',
+        'prioritas',
+        'status',
+
+    ];
 
     public function detailTiket() {
         return $this->hasMany(DetailTiket::class);

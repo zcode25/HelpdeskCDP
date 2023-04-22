@@ -21,7 +21,7 @@ class LoginController extends Controller
         if (Auth::attempt(['email' =>  $credentials['email'], 'password' => $credentials['password'], 'tipe' => 'karyawan'])) {
             $request->session()->regenerate();
  
-            return redirect()->intended('/home');
+            return redirect()->intended('/karyawan/home');
         }
 
         if (Auth::attempt(['email' =>  $credentials['email'], 'password' => $credentials['password'], 'tipe' => 'admin'])) {

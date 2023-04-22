@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin\DepartemenController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\TiketContoller;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Karyawan\HomeController as KaryawanHomeController;
+use App\Http\Controllers\Karyawan\TiketController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,9 +30,20 @@ Route::controller(HomeController::class)->group(function() {
     Route::get('/admin/home', 'index')->middleware('auth');
 });
 
+Route::controller(KaryawanHomeController::class)->group(function() {
+    Route::get('/karyawan/home', 'index')->middleware('auth');
+});
+
 Route::controller(TiketContoller::class)->group(function() {
     Route::get('/admin/tiket', 'index');
     Route::get('/admin/tiket/konfirmasi/CDP/IT/20/04/23/0001', 'konfirmasi');
+});
+
+Route::controller(TiketController::class)->group(function() {
+    Route::get('/karyawan/tiket', 'index');
+    Route::get('/karyawan/tiket/create', 'create');
+    Route::post('/karyawan/tiket/store', 'store');
+    Route::get('/karyawan/tiket/detail/{tiket:idTiket}', 'detail');
 });
 
 Route::controller(UserController::class)->group(function() {

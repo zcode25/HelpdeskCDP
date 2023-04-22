@@ -15,9 +15,12 @@ return new class extends Migration
     {
         Schema::create('detail_tikets', function (Blueprint $table) {
             $table->uuid('idDetailTiket')->primary();
-            // $table->char('tiket', 20);
-            // $table->foreign('tiket')->references('idTiket')->on('tikets')->onUpdate('cascade')->onDelete('restrict');
+            $table->uuid('tiket');
+            $table->foreign('tiket')->references('idTiket')->on('tikets')->onUpdate('cascade')->onDelete('restrict');
             $table->enum('status', ['Dikirim', 'Diterima', 'Ditolak', 'Dikerjakan', 'Ditutup', 'selesai']);
+            $table->string('ikon', '10');
+            $table->string('keterangan');
+            $table->string('keteranganTambahan')->nullable();
             $table->timestamps();
         });
     }

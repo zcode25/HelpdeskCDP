@@ -8,9 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class DetailTiket extends Model
 {
     use HasFactory;
+    
+    protected $fillable = [
+        'idDetailTiket',
+        'tiket',
+        'status',
+        'ikon',
+        'keterangan',
+        'keteranganTambahan'
+    ];
 
     public function tiket() {
-        return $this->belongsTo(Tiket::class, 'tiket', 'noTiket');
+        return $this->belongsTo(Tiket::class, 'tiket', 'idTiket');
     }
 
     

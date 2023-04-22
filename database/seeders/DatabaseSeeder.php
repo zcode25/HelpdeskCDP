@@ -67,16 +67,16 @@ class DatabaseSeeder extends Seeder
             'password'      => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
         ]);
 
-        Tiket::create([
-            'idTiket'           => Str::uuid(),
-            'noTiket'           => 'CDP/IT/20/04/23/0001',
-            'user'              => '12346',
-            // 'teknisi'           => '12347',
-            'permintaan'        => 'Printer Rusak',
-            'uraianPermintaan'  => 'Hasil printer tidak jelas',
-            // 'prioritas'         => 'B',
-            'status'            => 'Dikirim',
-        ]);
+        // Tiket::create([
+        //     'idTiket'           => Str::uuid(),
+        //     'noTiket'           => 'CDP/IT/20/04/23/0001',
+        //     'user'              => '12346',
+        //     // 'teknisi'           => '12347',
+        //     'permintaan'        => 'Printer Rusak',
+        //     'uraianPermintaan'  => 'Hasil printer tidak jelas',
+        //     // 'prioritas'         => 'B',
+        //     'status'            => 'Dikirim',
+        // ]);
 
         // DetailTiket::create([
         //     'idDetailTiket'     => Str::uuid(),
