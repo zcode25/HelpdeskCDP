@@ -52,7 +52,7 @@ class TiketController extends Controller
 
         return view('karyawan.tiket.detail', [
             'tiket'            => $tiket,
-            'detailTikets'     => DetailTiket::where('tiket', $tiket->idTiket)->get()
+            'detailTikets'     => DetailTiket::where('tiket', $tiket->idTiket)->orderBy('created_at', 'desc')->get()
         ]);
     }
 }

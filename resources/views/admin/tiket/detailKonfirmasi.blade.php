@@ -1,4 +1,4 @@
-@extends('layouts.karyawan')
+@extends('layouts.admin')
 @section('container')
 
 <main class="content">
@@ -8,8 +8,9 @@
       <div class="col-6">
         <div class="card">
           <div class="card-body">
-            <form action="" method="POST">
+            <form action="/admin/tiket/konfirmasi/{{ $tiket->idTiket }}" method="POST">
               @csrf
+              <input type="hidden" id="idTiket" name="idTiket" value="{{ $tiket->idTiket }}">
               <div class="mb-3">
                 <label for="noTiket" class="form-label">No Tiket</label>
                 <input type="text" class="form-control @error('noTiket') is-invalid @enderror" id="noTiket" name="noTiket" value="{{ $tiket->noTiket }}" autocomplete="off" readonly="on">
@@ -44,6 +45,26 @@
                 @error('uraianPermintaan') 
                   <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
+              </div>
+              <hr />
+              <div class="mb-3">
+                <label for="keteranganTambahan" class="form-label">Keterangan</label>
+                <textarea class="form-control @error('keteranganTambahan') is-invalid @enderror" id="keteranganTambahan" name="keteranganTambahan" rows="3" required>{{ old('keteranganTambahan', $tiket->keteranganTambahan) }}</textarea>
+                @error('keteranganTambahan') 
+                  <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="d-grid gap-2">
+                    <button type="submit" name="status" value="Diterima" class="btn btn-primary">Diterima</button>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="d-grid gap-2">
+                    <button type="submit" name="status" value="Ditolak" class="btn btn-danger">Ditolak</button>
+                  </div>
+                </div>
               </div>
             </form>
           </div>

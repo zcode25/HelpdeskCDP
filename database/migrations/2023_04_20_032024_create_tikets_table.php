@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('permintaan');
             $table->string('uraianPermintaan');
             $table->enum('prioritas', ['A', 'B', 'C'])->nullable();
-            $table->enum('status', ['Dikirim', 'Diterima', 'Ditolak', 'Dikerjakan', 'Ditutup', 'selesai']);
+            $table->enum('status', ['Dikirim', 'Diterima', 'Ditolak', 'Menunggu', 'Dikerjakan', 'Ditutup', 'selesai']);
             $table->timestamps();
         });
     }

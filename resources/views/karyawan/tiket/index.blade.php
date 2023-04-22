@@ -27,7 +27,7 @@
                       <th>Permintaan</th>
                       <th>Dikirim</th>
                       {{-- <th>Prioritas</th> --}}
-                      <th>Penerima Tugas</th>
+                      {{-- <th>Penerima Tugas</th> --}}
                       <th>Aksi</th>
 										</tr>
 									</thead>
@@ -35,16 +35,22 @@
                     @foreach ($tikets as $tiket)
 										<tr>
 											<td>{{ $tiket->noTiket }}</td>
-											<td>{{ $tiket->status }}</td>
+											@if ($tiket->status == "Ditolak")  
+                        <td><span class="badge bg-danger text-white">{{ $tiket->status }}</span></td>
+                      @elseIf ($tiket->status == "Menunggu")  
+                        <td><span class="badge bg-warning text-white">{{ $tiket->status }}</span></td>
+                      @else
+                        <td><span class="badge bg-success text-white">{{ $tiket->status }}</span></td>
+                      @endif
 											<td>{{ $tiket->permintaan }}</td>
 											<td>{{ $tiket->User->nama }}</td>
 											<td>{{ $tiket->created_at }}</td>
 											{{-- <td>{{ $tiket->prioritas }}</td> --}}
-											<td>@if ($tiket->status != 'Dikirim')
+											{{-- <td>@if ($tiket->status != 'Dikirim')
                         {{ $tiket->Teknisi->nama }}
-                      @endif </td>
+                      @endif </td> --}}
                       <td>
-                        <a href="/karyawan/tiket/detail/{{ $tiket->idTiket }}" class="btn btn-success btn-sm"><i class="align-middle" data-feather="eye"></i></a>                        
+                        <a href="/karyawan/tiket/detail/{{ $tiket->idTiket }}" class="btn btn-success btn-sm"><i class="align-middle" data-feather="eye"></i></a>
                       </td>
 										</tr>
                     @endforeach

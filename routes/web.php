@@ -36,7 +36,11 @@ Route::controller(KaryawanHomeController::class)->group(function() {
 
 Route::controller(TiketContoller::class)->group(function() {
     Route::get('/admin/tiket', 'index');
-    Route::get('/admin/tiket/konfirmasi/CDP/IT/20/04/23/0001', 'konfirmasi');
+    Route::get('/admin/tiket/detail/{tiket:idTiket}', 'detail');
+    Route::get('/admin/tiket/detailKonfirmasi/{tiket:idTiket}', 'detailKonfirmasi');
+    Route::post('/admin/tiket/konfirmasi/{tiket:idTiket}', 'konfirmasi');
+    Route::get('/admin/tiket/detailPenugasan/{tiket:idTiket}', 'detailPenugasan');
+    Route::post('/admin/tiket/penugasan/{tiket:idTiket}', 'penugasan');
 });
 
 Route::controller(TiketController::class)->group(function() {
