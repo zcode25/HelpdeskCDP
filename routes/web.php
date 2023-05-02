@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Karyawan\HomeController as KaryawanHomeController;
 use App\Http\Controllers\Karyawan\TiketController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Teknisi\HomeController as TeknisiHomeController;
+use App\Http\Controllers\Teknisi\TiketController as TeknisiTiketController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,13 +36,21 @@ Route::controller(KaryawanHomeController::class)->group(function() {
     Route::get('/karyawan/home', 'index')->middleware('auth');
 });
 
+Route::controller(TeknisiHomeController::class)->group(function() {
+    Route::get('/teknisi/home', 'index')->middleware('auth');
+});
+
 Route::controller(TiketContoller::class)->group(function() {
     Route::get('/admin/tiket', 'index');
     Route::get('/admin/tiket/detail/{tiket:idTiket}', 'detail');
     Route::get('/admin/tiket/detailKonfirmasi/{tiket:idTiket}', 'detailKonfirmasi');
+    Route::get('/admin/tiket/detailKonfirmasiKomplain/{tiket:idTiket}', 'detailKonfirmasiKomplain');
     Route::post('/admin/tiket/konfirmasi/{tiket:idTiket}', 'konfirmasi');
+    Route::post('/admin/tiket/konfirmasiKomplain/{tiket:idTiket}', 'konfirmasiKomplain');
     Route::get('/admin/tiket/detailPenugasan/{tiket:idTiket}', 'detailPenugasan');
+    Route::get('/admin/tiket/detailPenugasanKomplain/{tiket:idTiket}', 'detailPenugasanKomplain');
     Route::post('/admin/tiket/penugasan/{tiket:idTiket}', 'penugasan');
+    Route::post('/admin/tiket/penugasanKomplain/{tiket:idTiket}', 'penugasanKomplain');
 });
 
 Route::controller(TiketController::class)->group(function() {
@@ -48,6 +58,17 @@ Route::controller(TiketController::class)->group(function() {
     Route::get('/karyawan/tiket/create', 'create');
     Route::post('/karyawan/tiket/store', 'store');
     Route::get('/karyawan/tiket/detail/{tiket:idTiket}', 'detail');
+    Route::get('/karyawan/tiket/detailValidasi/{tiket:idTiket}', 'detailValidasi');
+    Route::post('/karyawan/tiket/validasi/{tiket:idTiket}', 'validasi');
+});
+
+Route::controller(TeknisiTiketController::class)->group(function() {
+    Route::get('/teknisi/tiket', 'index');
+    Route::get('/teknisi/tiket/detail/{tiket:idTiket}', 'detail');
+    Route::get('/teknisi/tiket/detailPenugasan/{tiket:idTiket}', 'detailPenugasan');
+    Route::post('/teknisi/tiket/penugasan/{tiket:idTiket}', 'penugasan');
+    Route::get('/teknisi/tiket/detailValidasi/{tiket:idTiket}', 'detailValidasi');
+    Route::post('/teknisi/tiket/validasi/{tiket:idTiket}', 'validasi');
 });
 
 Route::controller(UserController::class)->group(function() {

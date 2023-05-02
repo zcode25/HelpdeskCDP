@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.karyawan')
 @section('container')
 
 <main class="content">
@@ -8,7 +8,7 @@
       <div class="col-6">
         <div class="card">
           <div class="card-body">
-            <form action="/admin/tiket/penugasan/{{ $tiket->idTiket }}" method="POST">
+            <form action="/karyawan/tiket/validasi/{{ $tiket->idTiket }}" method="POST">
               @csrf
               <input type="hidden" id="idTiket" name="idTiket" value="{{ $tiket->idTiket }}">
               <div class="mb-3">
@@ -48,41 +48,25 @@
               </div>
               <hr />
               <div class="mb-3">
-                <label for="prioritas" class="form-label">Prioritas</label>
-                <select class="form-select" id="prioritas" name="prioritas">
-                    <option value="A">A</option>
-                    <option value="B">B</option>
-                    <option value="B">C</option>
-                </select>
-              </div>
-              <div class="mb-3">
-                <label for="teknisi" class="form-label">Teknisi</label>
-                <select class="form-select" id="teknisi" name="teknisi">
-                  @foreach ($teknisis as $teknisi)
-                      @if (old('teknisi') == $teknisi->nik)
-                          <option value="{{ $teknisi->nik }}" selected>{{ $teknisi->nama }}</option>
-                          @else
-                          <option value="{{ $teknisi->nik }}">{{ $teknisi->nama }}</option>
-                      @endif
-                  @endforeach
-                </select>
-              </div>
-              <div class="mb-3">
-                <label for="ekspetasiSelesai" class="form-label">Ekspetasi Selesai</label>
-                <input type="datetime-local" class="form-control @error('ekspetasiSelesai') is-invalid @enderror" id="ekspetasiSelesai" name="ekspetasiSelesai" value="{{ old('ekspetasiSelesai') }}" autocomplete="off">
-                @error('ekspetasiSelesai')
-                  <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-              </div>
-              <div class="mb-3">
                 <label for="keteranganTambahan" class="form-label">Keterangan</label>
                 <textarea class="form-control @error('keteranganTambahan') is-invalid @enderror" id="keteranganTambahan" name="keteranganTambahan" rows="3" required>{{ old('keteranganTambahan', $tiket->keteranganTambahan) }}</textarea>
                 @error('keteranganTambahan') 
                   <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>
-              <div class="d-grid gap-2">
-                <button type="submit" name="status" value="Penugasan" class="btn btn-primary">Kirim Tugas</button>
+              <div class="row mb-3">
+                <div class="col">
+                  <div class="d-grid gap-2">
+                    <button type="submit" name="status" value="Selesai" class="btn btn-success">Selesai</button>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="d-grid gap-2">
+                    <button type="submit" name="status" value="Komplain" class="btn btn-danger">Komplain</button>
+                  </div>
+                </div>
               </div>
             </form>
           </div>

@@ -38,7 +38,7 @@ class TiketController extends Controller
         $detailTiket['tiket'] =  $validatedData['idTiket'];
         $detailTiket['status'] = $validatedData['status'];
         $detailTiket['ikon'] = 'mail';
-        $detailTiket['keterangan'] = 'Tiket kamu sedang dikirim ke Admin Helpdesk';
+        $detailTiket['keterangan'] = 'Sdr. '. auth()->user()->nama. ' mengirim tiket (' . $request->noTiket . ').';
         
         DetailTiket::Create($detailTiket);
 
@@ -55,4 +55,40 @@ class TiketController extends Controller
             'detailTikets'     => DetailTiket::where('tiket', $tiket->idTiket)->orderBy('created_at', 'desc')->get()
         ]);
     }
+
+    public function detailValidasi(Tiket $tiket) {
+
+        return view('karyawan.tiket.detailValidasi', [
+            'tiket'            => $tiket,
+            'detailTikets'     => DetailTiket::where('tiket', $tiket->idTiket)->orderBy('created_at', 'desc')->get()
+        ]);
+    }
+
+    public function validasi(Request $request, Tiket $tiket) {
+        $validatedData = $request->validate([
+            'status'            => 'required',
+        ]);
+
+
+        Tiket::where('idTiket', $tiket->idTiket)->update($validatedData);
+
+        $detailTiket['idDetailTiket'] =  Str::uuid();
+        $detailTiket['tiket'] =  $tiket->idTiket;
+        $detailTiket['status'] = $validatedData['status'];
+        $detailTiket['keteranganTambahan'] = $request->keteranganTambahan;
+
+        if ($detailTiket['status'] == "Selesai") {
+            $detailTiket['ikon'] = 'check-circle';
+            $detailTiket['keterangan'] = 'Sdr. '. auth()->user()->nama. ' menerima validasi dan tiket (' . $request->noTiket . ') selesai.';
+        } else {
+            $detailTiket['ikon'] = 'alert-circle';
+            $detailTiket['keterangan'] = 'Sdr. '. auth()->user()->nama. ' komplain pada tiket (' . $request->noTiket . '), Mohon untuk dicek kembali oleh teknisi.';
+        }
+        
+        DetailTiket::Create($detailTiket);
+
+        return redirect('/karyawan/tiket')->with('success', 'Data tiket berhasil diperbaruhi');
+    }
+
+
 }

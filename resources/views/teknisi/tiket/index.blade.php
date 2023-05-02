@@ -1,4 +1,4 @@
-@extends('layouts.karyawan')
+@extends('layouts.teknisi')
 @section('container')
     <main class="content">
       <div class="container-fluid p-0">
@@ -17,7 +17,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-body">
-                <a href="/karyawan/tiket/create" class="btn btn-primary btn-sm mb-3"><i class="me-2" data-feather="layers"></i> <span class="align-middle">Buat Tiket</span></a>
+                {{-- <a href="/karyawan/tiket/create" class="btn btn-primary btn-sm mb-3"><i class="me-2" data-feather="layers"></i> <span class="align-middle">Buat Tiket</span></a> --}}
                 <table class="table my-0 table-sm">
 									<thead>
 										<tr>
@@ -25,7 +25,9 @@
 											<th>Status</th>
                       <th>Judul</th>
                       <th>Permintaan</th>
+                      <th>Prioritas</th>
                       <th>Dikirim</th>
+                      <th>Ekspetasi Selesai</th>
                       {{-- <th>Prioritas</th> --}}
                       {{-- <th>Penerima Tugas</th> --}}
                       <th>Aksi</th>
@@ -48,18 +50,24 @@
                       @endif
 											<td>{{ $tiket->permintaan }}</td>
 											<td>{{ $tiket->User->nama }}</td>
+											<td>{{ $tiket->prioritas }}</td>
 											<td>{{ $tiket->created_at }}</td>
+											<td>{{ $tiket->ekspetasiSelesai }}</td>
 											{{-- <td>{{ $tiket->prioritas }}</td> --}}
 											{{-- <td>@if ($tiket->status != 'Dikirim')
                         {{ $tiket->Teknisi->nama }}
                       @endif </td> --}}
-                      @if ($tiket->status == "Validasi")
+                      @if ($tiket->status == "Penugasan" || $tiket->status == "Penugasan Komplain")
                       <td>
-                        <a href="/karyawan/tiket/detailValidasi/{{ $tiket->idTiket }}" class="btn btn-success btn-sm"><i class="align-middle" data-feather="eye"></i></a>
+                        <a href="/teknisi/tiket/detailPenugasan/{{ $tiket->idTiket }}" class="btn btn-success btn-sm"><i class="align-middle" data-feather="eye"></i></a>
                       </td>
-                      @else
+                      @elseif ($tiket->status == "Dikerjakan")
                       <td>
-                        <a href="/karyawan/tiket/detail/{{ $tiket->idTiket }}" class="btn btn-success btn-sm"><i class="align-middle" data-feather="eye"></i></a>
+                        <a href="/teknisi/tiket/detailValidasi/{{ $tiket->idTiket }}" class="btn btn-success btn-sm"><i class="align-middle" data-feather="eye"></i></a>
+                      </td>
+                      @elseif ($tiket->status == "Validasi" || $tiket->status == "Selesai")
+                      <td>
+                        <a href="/teknisi/tiket/detail/{{ $tiket->idTiket }}" class="btn btn-success btn-sm"><i class="align-middle" data-feather="eye"></i></a>
                       </td>
                       @endIf
                       

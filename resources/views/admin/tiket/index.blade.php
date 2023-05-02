@@ -14,6 +14,94 @@
           </div>
         @endif
         <div class="row">
+          <div class="col-xl-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col mt-0">
+                    <h5 class="card-title">Dikirim</h5>
+                  </div>
+                  <div class="col-auto">
+                    <div class="bg-info text-white p-2 rounded-3">
+                      <i class="align-middle" data-feather="mail"></i>
+                    </div>
+                  </div>
+                </div>
+                <h1 class="mt-1 mb-3">{{ $dikirim }}</h1>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col mt-0">
+                    <h5 class="card-title">Ditahan</h5>
+                  </div>
+                  <div class="col-auto">
+                    <div class="bg-warning text-white p-2 rounded-3">
+                      <i class="align-middle" data-feather="loader"></i>
+                    </div>
+                  </div>
+                </div>
+                <h1 class="mt-1 mb-3">{{ $ditahan }}</h1>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col mt-0">
+                    <h5 class="card-title">Ditolak</h5>
+                  </div>
+                  <div class="col-auto">
+                    <div class="bg-danger text-white p-2 rounded-3">
+                      <i class="align-middle" data-feather="alert-circle"></i>
+                    </div>
+                  </div>
+                </div>
+                <h1 class="mt-1 mb-3">{{ $ditolak }}</h1>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col mt-0">
+                    <h5 class="card-title">Berlangsung</h5>
+                  </div>
+                  <div class="col-auto">
+                    <div class="bg-primary text-white p-2 rounded-3">
+                      <i class="align-middle" data-feather="send"></i>
+                    </div>
+                  </div>
+                </div>
+                <h1 class="mt-1 mb-3">{{ $berlangsung }}</h1>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col mt-0">
+                    <h5 class="card-title">Selesai</h5>
+                  </div>
+                  <div class="col-auto">
+                    <div class="bg-success text-white p-2 rounded-3">
+                      <i class="align-middle" data-feather="check-circle"></i>
+                    </div>
+                  </div>
+                </div>
+                <h1 class="mt-1 mb-3">{{ $selesai }}</h1>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="row">
           <div class="col-12">
             <div class="card">
               <div class="card-body">
@@ -25,8 +113,9 @@
 											<th>Status</th>
                       <th>Judul</th>
                       <th>Permintaan</th>
-                      <th>Dikirim</th>
                       <th>Prioritas</th>
+                      <th>Dikirim</th>
+                      <th>Ekspetasi Selesai</th>
                       {{-- <th>Penerima Tugas</th> --}}
                       <th>Aksi</th>
 										</tr>
@@ -35,22 +124,27 @@
                     @foreach ($tikets as $tiket)
 										<tr>
 											<td>{{ $tiket->noTiket }}</td>
-                      @if ($tiket->status == "Ditolak")  
+                      @if ($tiket->status == "Ditolak" || $tiket->status == "Komplain" || $tiket->status == "Komplain Ditolak")  
                         <td><span class="badge bg-danger text-white">{{ $tiket->status }}</span></td>
-                      @elseIf ($tiket->status == "Menunggu")  
+                      @elseIf ($tiket->status == "Validasi" || $tiket->status == "Ditahan" || $tiket->status == "Komplain Ditahan")  
                         <td><span class="badge bg-warning text-white">{{ $tiket->status }}</span></td>
-                      @else
+                      @elseIf ($tiket->status == "Penugasan" || $tiket->status == "Penugasan Komplain" || $tiket->status == "Dikirim" || $tiket->status == "Dikerjakan")  
+                        <td><span class="badge bg-secondary text-white">{{ $tiket->status }}</span></td>
+                      @elseIf ($tiket->status == "Diterima" || $tiket->status == "Komplain Diterima")  
+                        <td><span class="badge bg-primary text-white">{{ $tiket->status }}</span></td>
+                      @elseIf ($tiket->status == "Selesai")  
                         <td><span class="badge bg-success text-white">{{ $tiket->status }}</span></td>
                       @endif
 											
 											<td>{{ $tiket->permintaan }}</td>
 											<td>{{ $tiket->User->nama }}</td>
-											<td>{{ $tiket->created_at }}</td>
 											<td>{{ $tiket->prioritas }}</td>
+											<td>{{ $tiket->created_at }}</td>
+											<td>{{ $tiket->ekspetasiSelesai }}</td>
 											{{-- <td>@if ($tiket->status != 'Dikirim')
                         {{ $tiket->Teknisi->nama }}
                       @endif </td> --}}
-                      @if ($tiket->status == "Dikirim")
+                      @if ($tiket->status == "Dikirim" || $tiket->status == "Ditahan")
                       <td>
                         <a href="/admin/tiket/detailKonfirmasi/{{ $tiket->idTiket }}" class="btn btn-success btn-sm"><i class="align-middle" data-feather="eye"></i></a>                        
                       </td>
@@ -58,13 +152,17 @@
                       <td>
                         <a href="/admin/tiket/detailPenugasan/{{ $tiket->idTiket }}" class="btn btn-success btn-sm"><i class="align-middle" data-feather="eye"></i></a>                        
                       </td>
-                      @elseif ($tiket->status == "Ditolak" && $tiket->status == "Menunggu")
+                      @elseif ($tiket->status == "Komplain Diterima")
+                      <td>
+                        <a href="/admin/tiket/detailPenugasanKomplain/{{ $tiket->idTiket }}" class="btn btn-success btn-sm"><i class="align-middle" data-feather="eye"></i></a>                        
+                      </td>
+                      @elseif ($tiket->status == "Ditolak" || $tiket->status == "Penugasan" || $tiket->status == "Penugasan Komplain" || $tiket->status == "Dikerjakan" || $tiket->status == "Validasi" || $tiket->status == "Selesai" || $tiket->status == "Komplain Ditolak")
                       <td>
                         <a href="/admin/tiket/detail/{{ $tiket->idTiket }}" class="btn btn-success btn-sm"><i class="align-middle" data-feather="eye"></i></a>                        
                       </td>
-                      @elseif ($tiket->status == "Menunggu")
+                      @elseif ($tiket->status == "Komplain" || $tiket->status == "Komplain Ditahan")
                       <td>
-                        <a href="/admin/tiket/detail/{{ $tiket->idTiket }}" class="btn btn-success btn-sm"><i class="align-middle" data-feather="eye"></i></a>                        
+                        <a href="/admin/tiket/detailKonfirmasiKomplain/{{ $tiket->idTiket }}" class="btn btn-success btn-sm"><i class="align-middle" data-feather="eye"></i></a>                        
                       </td>
                       @endif
                       {{-- <td>

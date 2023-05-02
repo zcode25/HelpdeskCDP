@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.teknisi')
 @section('container')
     <main class="content">
       <div class="container-fluid p-0">
@@ -7,21 +7,9 @@
           <div class="col-12 col-lg-6">
             <div class="card flex-fill w-100">
               <div class="card-header">
-                <h5 class="card-title">Jumlah Duga Bahaya Tahun {{ date('m') }}</h5>
-                {{-- <h6 class="card-subtitle text-muted">A line chart is a way of plotting data points on a line.</h6> --}}
+                <h5 class="card-title">Jumlah {{ date('Y') }}</h5>
               </div>
-              <div class="card-body">
-                @if ($label)
-                <div class="chart">
-                  <canvas id="chartjs-line"></canvas>
-                </div>
-                @else
-                <div class="text-center">
-                  <i class="align-middle mb-2" data-feather="alert-circle"></i>
-                  <h5>Data is still empty</h5>
-                </div>
-                @endif 
-              </div>
+    
             </div>
           </div>
           <div class="col-12 col-lg-6">

@@ -40,8 +40,10 @@
                       <td>
                         @if ($user->tipe == 'karyawan')
                           <span class="badge bg-success">{{ $user->tipe }}</span>  
-                          @elseIf ($user->tipe == 'admin')
-                          <span class="badge bg-primary">{{ $user->tipe }}</span>  
+                        @elseIf ($user->tipe == 'admin')
+                          <span class="badge bg-primary">{{ $user->tipe }}</span>
+                        @elseIf ($user->tipe == 'teknisi')
+                          <span class="badge bg-secondary">{{ $user->tipe }}</span>  
                         @endif
                       </td>
                       <td>

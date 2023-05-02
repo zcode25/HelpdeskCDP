@@ -17,7 +17,7 @@ return new class extends Migration
             $table->uuid('idDetailTiket')->primary();
             $table->uuid('tiket');
             $table->foreign('tiket')->references('idTiket')->on('tikets')->onUpdate('cascade')->onDelete('restrict');
-            $table->enum('status', ['Dikirim', 'Diterima', 'Ditolak', 'Menunggu', 'Dikerjakan', 'Ditutup', 'selesai']);
+            $table->enum('status', ['Dikirim', 'Diterima', 'Ditahan', 'Ditolak', 'Komplain Diterima', 'Komplain Ditahan', 'Komplain Ditolak', 'Penugasan Komplain', 'Penugasan', 'Dikerjakan', 'Validasi', 'Komplain', 'Selesai']);
             $table->string('ikon', '20');
             $table->string('keterangan');
             $table->string('keteranganTambahan')->nullable();

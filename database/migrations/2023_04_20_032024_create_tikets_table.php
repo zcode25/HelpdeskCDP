@@ -22,8 +22,9 @@ return new class extends Migration
             $table->foreign('teknisi')->references('nik')->on('users')->onUpdate('cascade')->onDelete('restrict');
             $table->string('permintaan');
             $table->string('uraianPermintaan');
+            $table->timestamp('ekspetasiSelesai')->nullable();
             $table->enum('prioritas', ['A', 'B', 'C'])->nullable();
-            $table->enum('status', ['Dikirim', 'Diterima', 'Ditolak', 'Menunggu', 'Dikerjakan', 'Ditutup', 'selesai']);
+            $table->enum('status', ['Dikirim', 'Diterima', 'Ditahan', 'Ditolak', 'Komplain Diterima', 'Komplain Ditahan', 'Komplain Ditolak', 'Penugasan Komplain', 'Penugasan', 'Dikerjakan', 'Validasi', 'Komplain', 'Selesai']);
             $table->timestamps();
         });
     }

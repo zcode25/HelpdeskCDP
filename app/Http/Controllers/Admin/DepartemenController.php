@@ -26,7 +26,7 @@ class DepartemenController extends Controller
 
         Departemen::create($validatedData);
 
-        return redirect('/admin/departemen')->with('success', 'Data uploaded successfully');
+        return redirect('/admin/departemen')->with('success', 'Data Departemen berhasil ditambahkan');
     }
 
     public function edit(Departemen $departemen) {

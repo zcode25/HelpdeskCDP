@@ -19,6 +19,13 @@
                 @enderror
               </div>
               <div class="mb-3">
+                <label for="created_at" class="form-label">Dikirim</label>
+                <input type="text" class="form-control @error('created_at') is-invalid @enderror" id="created_at" name="created_at" value="{{ $tiket->created_at }}" autocomplete="off" readonly="on">
+                @error('created_at') 
+                  <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              </div>
+              <div class="mb-3">
                 <label for="user" class="form-label">Pengguna</label>
                 <input type="text" class="form-control @error('user') is-invalid @enderror" id="user" name="user" value="{{ old('user', $tiket->User->nama) }}" autocomplete="off" readonly="on">
                 @error('user')
@@ -54,12 +61,21 @@
                   <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>
-              <div class="row">
+              <div class="row mb-3">
                 <div class="col">
                   <div class="d-grid gap-2">
                     <button type="submit" name="status" value="Diterima" class="btn btn-primary">Diterima</button>
                   </div>
                 </div>
+              </div>
+              <div class="row">
+                @if ($tiket->status != "Ditahan")
+                <div class="col">
+                  <div class="d-grid gap-2">
+                    <button type="submit" name="status" value="Ditahan" class="btn btn-warning">Ditahan</button>
+                  </div>
+                </div>
+                @endif
                 <div class="col">
                   <div class="d-grid gap-2">
                     <button type="submit" name="status" value="Ditolak" class="btn btn-danger">Ditolak</button>
@@ -80,11 +96,15 @@
             @foreach ($detailTikets as $detailTiket)
 
               <div class="d-flex align-items-start">
-                @if ($detailTiket->status == "Ditolak")  
+                @if ($detailTiket->status == "Ditolak" || $detailTiket->status == "Komplain" || $detailTiket->status == "Komplain Ditolak")  
                   <div><i class="me-2 text-danger" data-feather="{{ $detailTiket->ikon }}"></i></div>
-                @elseIf ($detailTiket->status == "Menunggu")  
+                @elseIf ($detailTiket->status == "Validasi" || $detailTiket->status == "Ditahan" || $detailTiket->status == "Komplain Ditahan")  
                   <div><i class="me-2 text-warning" data-feather="{{ $detailTiket->ikon }}"></i></div>
-                @else
+                @elseIf ($detailTiket->status == "Penugasan" || $detailTiket->status == "Penugasan Komplain" || $detailTiket->status == "Dikirim" || $detailTiket->status == "Dikerjakan")  
+                  <div><i class="me-2 text-secondary" data-feather="{{ $detailTiket->ikon }}"></i></div>
+                @elseIf ($detailTiket->status == "Diterima" || $detailTiket->status == "Komplain Diterima")  
+                  <div><i class="me-2 text-primary" data-feather="{{ $detailTiket->ikon }}"></i></div>
+                @elseIf ($detailTiket->status == "Selesai")  
                   <div><i class="me-2 text-success" data-feather="{{ $detailTiket->ikon }}"></i></div>
                 @endif
                 {{-- <img src="img/avatars/avatar-5.jpg" width="36" height="36" class="rounded-circle me-2"> --}}

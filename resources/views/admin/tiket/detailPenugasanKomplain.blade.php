@@ -8,7 +8,7 @@
       <div class="col-6">
         <div class="card">
           <div class="card-body">
-            <form action="/admin/tiket/penugasan/{{ $tiket->idTiket }}" method="POST">
+            <form action="/admin/tiket/penugasanKomplain/{{ $tiket->idTiket }}" method="POST">
               @csrf
               <input type="hidden" id="idTiket" name="idTiket" value="{{ $tiket->idTiket }}">
               <div class="mb-3">
@@ -47,7 +47,7 @@
                 @enderror
               </div>
               <hr />
-              <div class="mb-3">
+              {{-- <div class="mb-3">
                 <label for="prioritas" class="form-label">Prioritas</label>
                 <select class="form-select" id="prioritas" name="prioritas">
                     <option value="A">A</option>
@@ -66,14 +66,7 @@
                       @endif
                   @endforeach
                 </select>
-              </div>
-              <div class="mb-3">
-                <label for="ekspetasiSelesai" class="form-label">Ekspetasi Selesai</label>
-                <input type="datetime-local" class="form-control @error('ekspetasiSelesai') is-invalid @enderror" id="ekspetasiSelesai" name="ekspetasiSelesai" value="{{ old('ekspetasiSelesai') }}" autocomplete="off">
-                @error('ekspetasiSelesai')
-                  <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-              </div>
+              </div> --}}
               <div class="mb-3">
                 <label for="keteranganTambahan" class="form-label">Keterangan</label>
                 <textarea class="form-control @error('keteranganTambahan') is-invalid @enderror" id="keteranganTambahan" name="keteranganTambahan" rows="3" required>{{ old('keteranganTambahan', $tiket->keteranganTambahan) }}</textarea>
@@ -82,7 +75,7 @@
                 @enderror
               </div>
               <div class="d-grid gap-2">
-                <button type="submit" name="status" value="Penugasan" class="btn btn-primary">Kirim Tugas</button>
+                <button type="submit" name="status" value="Penugasan Komplain" class="btn btn-primary">Kirim Tugas</button>
               </div>
             </form>
           </div>

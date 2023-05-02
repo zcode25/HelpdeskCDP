@@ -8,7 +8,7 @@
       <div class="col-6">
         <div class="card">
           <div class="card-body">
-            <form action="/admin/tiket/penugasan/{{ $tiket->idTiket }}" method="POST">
+            <form action="/admin/tiket/konfirmasiKomplain/{{ $tiket->idTiket }}" method="POST">
               @csrf
               <input type="hidden" id="idTiket" name="idTiket" value="{{ $tiket->idTiket }}">
               <div class="mb-3">
@@ -48,41 +48,32 @@
               </div>
               <hr />
               <div class="mb-3">
-                <label for="prioritas" class="form-label">Prioritas</label>
-                <select class="form-select" id="prioritas" name="prioritas">
-                    <option value="A">A</option>
-                    <option value="B">B</option>
-                    <option value="B">C</option>
-                </select>
-              </div>
-              <div class="mb-3">
-                <label for="teknisi" class="form-label">Teknisi</label>
-                <select class="form-select" id="teknisi" name="teknisi">
-                  @foreach ($teknisis as $teknisi)
-                      @if (old('teknisi') == $teknisi->nik)
-                          <option value="{{ $teknisi->nik }}" selected>{{ $teknisi->nama }}</option>
-                          @else
-                          <option value="{{ $teknisi->nik }}">{{ $teknisi->nama }}</option>
-                      @endif
-                  @endforeach
-                </select>
-              </div>
-              <div class="mb-3">
-                <label for="ekspetasiSelesai" class="form-label">Ekspetasi Selesai</label>
-                <input type="datetime-local" class="form-control @error('ekspetasiSelesai') is-invalid @enderror" id="ekspetasiSelesai" name="ekspetasiSelesai" value="{{ old('ekspetasiSelesai') }}" autocomplete="off">
-                @error('ekspetasiSelesai')
-                  <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-              </div>
-              <div class="mb-3">
                 <label for="keteranganTambahan" class="form-label">Keterangan</label>
                 <textarea class="form-control @error('keteranganTambahan') is-invalid @enderror" id="keteranganTambahan" name="keteranganTambahan" rows="3" required>{{ old('keteranganTambahan', $tiket->keteranganTambahan) }}</textarea>
                 @error('keteranganTambahan') 
                   <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>
-              <div class="d-grid gap-2">
-                <button type="submit" name="status" value="Penugasan" class="btn btn-primary">Kirim Tugas</button>
+              <div class="row mb-3">
+                <div class="col">
+                  <div class="d-grid gap-2">
+                    <button type="submit" name="status" value="Komplain Diterima" class="btn btn-primary">Diterima</button>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                @if ($tiket->status != "Komplain Ditahan")
+                <div class="col">
+                  <div class="d-grid gap-2">
+                    <button type="submit" name="status" value="Komplain Ditahan" class="btn btn-warning">Ditahan</button>
+                  </div>
+                </div>
+                @endif
+                {{-- <div class="col">
+                  <div class="d-grid gap-2">
+                    <button type="submit" name="status" value="Komplain Ditolak" class="btn btn-danger">Ditolak</button>
+                  </div>
+                </div> --}}
               </div>
             </form>
           </div>
@@ -102,7 +93,7 @@
                   <div><i class="me-2 text-danger" data-feather="{{ $detailTiket->ikon }}"></i></div>
                 @elseIf ($detailTiket->status == "Validasi" || $detailTiket->status == "Ditahan" || $detailTiket->status == "Komplain Ditahan")  
                   <div><i class="me-2 text-warning" data-feather="{{ $detailTiket->ikon }}"></i></div>
-                @elseIf ($detailTiket->status == "Penugasan" || $detailTiket->status == "Penugasan Komplain" || $detailTiket->status == "Dikirim" || $detailTiket->status == "Dikerjakan")  
+                @elseIf ($detailTiket->status == "Penugasan" || $detailTiket->status == "Dikirim" || $detailTiket->status == "Dikerjakan")  
                   <div><i class="me-2 text-secondary" data-feather="{{ $detailTiket->ikon }}"></i></div>
                 @elseIf ($detailTiket->status == "Diterima" || $detailTiket->status == "Komplain Diterima")  
                   <div><i class="me-2 text-primary" data-feather="{{ $detailTiket->ikon }}"></i></div>

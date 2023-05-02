@@ -7,14 +7,14 @@
 
       <ul class="sidebar-nav">
 
-        <li class="sidebar-item {{ Request::is('karyawan/home*') ? 'active' : '' }}">
-          <a class="sidebar-link" href="/karyawan/home">
+        <li class="sidebar-item {{ Request::is('teknisi/home*') ? 'active' : '' }}">
+          <a class="sidebar-link" href="/teknisi/home">
             <i class="align-middle" data-feather="home"></i> <span class="align-middle">Home</span>
           </a>
         </li>
 
-        <li class="sidebar-item {{ Request::is('karyawan/tiket*') ? 'active' : '' }}">
-          <a class="sidebar-link" href="/karyawan/tiket">
+        <li class="sidebar-item {{ Request::is('teknisi/tiket*') ? 'active' : '' }}">
+          <a class="sidebar-link" href="/teknisi/tiket">
             <i class="align-middle" data-feather="layers"></i> <span class="align-middle">Tiket</span>
           </a>
         </li>

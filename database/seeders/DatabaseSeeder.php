@@ -49,23 +49,45 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'nik'           => '12346',
-            'nama'          => 'Jamal',
-            'departemen'    => 'D0002',
-            'email'         => 'jamal@gmail.com',
-            'tel'           => '6281316671374',
-            'tipe'          => 'karyawan',
+            'nama'          => 'Elham',
+            'departemen'    => 'D0001',
+            'email'         => 'elham@gmail.com',
+            'tel'           => '6281316671375',
+            'tipe'          => 'teknisi',
             'password'      => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
         ]);
 
         User::create([
             'nik'           => '12347',
-            'nama'          => 'Udin',
+            'nama'          => 'Dimas',
             'departemen'    => 'D0001',
-            'email'         => 'udin@gmail.com',
-            'tel'           => '6281316671375',
+            'email'         => 'dimas@gmail.com',
+            'tel'           => '6281316671376',
             'tipe'          => 'teknisi',
             'password'      => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
         ]);
+
+        User::create([
+            'nik'           => '12348',
+            'nama'          => 'Indra',
+            'departemen'    => 'D0002',
+            'email'         => 'indra@gmail.com',
+            'tel'           => '6281316671377',
+            'tipe'          => 'karyawan',
+            'password'      => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+        ]);
+
+        User::create([
+            'nik'           => '12349',
+            'nama'          => 'Agung',
+            'departemen'    => 'D0002',
+            'email'         => 'Agung@gmail.com',
+            'tel'           => '6281316671378',
+            'tipe'          => 'karyawan',
+            'password'      => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+        ]);
+
+        
 
         // Tiket::create([
         //     'idTiket'           => Str::uuid(),

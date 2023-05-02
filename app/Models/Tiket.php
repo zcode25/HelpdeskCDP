@@ -17,6 +17,7 @@ class Tiket extends Model
         'teknisi',
         'permintaan',
         'uraianPermintaan',
+        'ekspetasiSelesai',
         'prioritas',
         'status',
 

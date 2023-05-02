@@ -2,16 +2,30 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Tiket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
     public function index() {
 
-        return view('admin.home.index');
+        $tikets = Tiket::select(DB::raw("DATE_FORMAT(created_at,'%d') AS date"), DB::raw('count(*) as total'))->whereMonth('created_at', date('m'))->groupBy('date')->get();
+        
+        $label = [];
+        $total = [];
+        foreach($tikets as $tiket) {
+            $label[] = $tiket->date;
+            $total[] = $tiket->total;
+        };
+        
+        
+        return view('admin.home.index', [
+            'label' => $label,
+            'total' => $total,
+        ]);
 
-        // dd(User::all());
     }
 }

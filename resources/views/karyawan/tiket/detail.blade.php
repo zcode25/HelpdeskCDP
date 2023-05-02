@@ -18,6 +18,13 @@
                 @enderror
               </div>
               <div class="mb-3">
+                <label for="created_at" class="form-label">Dikirim</label>
+                <input type="text" class="form-control @error('created_at') is-invalid @enderror" id="created_at" name="created_at" value="{{ $tiket->created_at }}" autocomplete="off" readonly="on">
+                @error('created_at') 
+                  <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              </div>
+              <div class="mb-3">
                 <label for="user" class="form-label">Pengguna</label>
                 <input type="text" class="form-control @error('user') is-invalid @enderror" id="user" name="user" value="{{ old('user', $tiket->User->nama) }}" autocomplete="off" readonly="on">
                 @error('user')
@@ -45,6 +52,23 @@
                   <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>
+              @isset($tiket->teknisi)
+              <hr />
+              <div class="mb-3">
+                <label for="teknisi" class="form-label">Teknisi</label>
+                <input type="text" class="form-control @error('teknisi') is-invalid @enderror" id="teknisi" name="teknisi" value="{{ old('teknisi', $tiket->Teknisi->nama) }}" autocomplete="off" readonly="on">
+                @error('teknisi')
+                  <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              </div>
+              <div class="mb-3">
+                <label for="ekspetasiSelesai" class="form-label">Ekspetasi Selesai</label>
+                <input type="text" class="form-control @error('ekspetasiSelesai') is-invalid @enderror" id="ekspetasiSelesai" name="ekspetasiSelesai" value="{{ old('ekspetasiSelesai', $tiket->ekspetasiSelesai) }}" autocomplete="off" readonly="on">
+                @error('ekspetasiSelesai')
+                  <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              </div>
+              @endisset
             </form>
           </div>
         </div>
@@ -59,11 +83,15 @@
             @foreach ($detailTikets as $detailTiket)
 
               <div class="d-flex align-items-start">
-                @if ($detailTiket->status == "Ditolak")  
+                @if ($detailTiket->status == "Ditolak" || $detailTiket->status == "Komplain" || $detailTiket->status == "Komplain Ditolak")  
                   <div><i class="me-2 text-danger" data-feather="{{ $detailTiket->ikon }}"></i></div>
-                @elseIf ($detailTiket->status == "Menunggu")  
+                @elseIf ($detailTiket->status == "Validasi" || $detailTiket->status == "Ditahan" || $detailTiket->status == "Komplain Ditahan")  
                   <div><i class="me-2 text-warning" data-feather="{{ $detailTiket->ikon }}"></i></div>
-                @else
+                @elseIf ($detailTiket->status == "Penugasan" || $detailTiket->status == "Penugasan Komplain" || $detailTiket->status == "Dikirim" || $detailTiket->status == "Dikerjakan")  
+                  <div><i class="me-2 text-secondary" data-feather="{{ $detailTiket->ikon }}"></i></div>
+                @elseIf ($detailTiket->status == "Diterima" || $detailTiket->status == "Komplain Diterima")  
+                  <div><i class="me-2 text-primary" data-feather="{{ $detailTiket->ikon }}"></i></div>
+                @elseIf ($detailTiket->status == "Selesai")  
                   <div><i class="me-2 text-success" data-feather="{{ $detailTiket->ikon }}"></i></div>
                 @endif
                 {{-- <img src="img/avatars/avatar-5.jpg" width="36" height="36" class="rounded-circle me-2"> --}}
