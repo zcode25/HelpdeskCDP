@@ -43,7 +43,9 @@
                         @elseIf ($user->tipe == 'admin')
                           <span class="badge bg-primary">{{ $user->tipe }}</span>
                         @elseIf ($user->tipe == 'teknisi')
-                          <span class="badge bg-secondary">{{ $user->tipe }}</span>  
+                          <span class="badge bg-secondary">{{ $user->tipe }}</span> 
+                        @elseIf ($user->tipe == 'pimpinan')
+                          <span class="badge bg-info">{{ $user->tipe }}</span>  
                         @endif
                       </td>
                       <td>

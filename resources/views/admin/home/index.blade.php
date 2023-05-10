@@ -7,7 +7,7 @@
           <div class="col-12 col-lg-6">
             <div class="card flex-fill w-100">
               <div class="card-header">
-                <h5 class="card-title">Jumlah Duga Bahaya Tahun {{ date('m') }}</h5>
+                <h5 class="card-title">Amount Tickets in {{ date('M') }}</h5>
                 {{-- <h6 class="card-subtitle text-muted">A line chart is a way of plotting data points on a line.</h6> --}}
               </div>
               <div class="card-body">
@@ -24,17 +24,65 @@
               </div>
             </div>
           </div>
-          <div class="col-12 col-lg-6">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="card-title">Kategori</h5>
-                {{-- <h6 class="card-subtitle text-muted">A bar chart provides a way of showing data values represented as vertical bars.</h6> --}}
-              </div>
-              
-            </div>
-          </div>
         </div>
       </div>
     </main>
 
+    <script>
+      var label =  {{ Js::from($label) }};
+      var total =  {{ Js::from($total) }};
+
+      document.addEventListener("DOMContentLoaded", function() {
+        // Line chart
+        new Chart(document.getElementById("chartjs-line"), {
+          type: "line",
+          data: {
+            labels: label,
+            datasets: [{
+              label: "Total",
+              fill: true,
+              backgroundColor: "transparent",
+              borderColor: window.theme.primary,
+              data: total
+            }]
+          },
+          options: {
+            maintainAspectRatio: false,
+            legend: {
+              display: false
+            },
+            tooltips: {
+              intersect: false
+            },
+            hover: {
+              intersect: true
+            },
+            plugins: {
+              filler: {
+                propagate: false
+              }
+            },
+            scales: {
+              xAxes: [{
+                reverse: true,
+                gridLines: {
+                  color: "rgba(0,0,0,0.05)"
+                }
+              }],
+              yAxes: [{
+                ticks: {
+                  stepSize: 500
+                },
+                display: true,
+                borderDash: [5, 5],
+                gridLines: {
+                  color: "rgba(0,0,0,0)",
+                  fontColor: "#fff"
+                }
+              }]
+            }
+          }
+        });
+      });
+    </script>
 @endsection

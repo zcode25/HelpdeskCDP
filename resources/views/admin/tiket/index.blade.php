@@ -57,7 +57,7 @@
                   </div>
                   <div class="col-auto">
                     <div class="bg-danger text-white p-2 rounded-3">
-                      <i class="align-middle" data-feather="alert-circle"></i>
+                      <i class="align-middle" data-feather="x-circle"></i>
                     </div>
                   </div>
                 </div>
@@ -99,6 +99,23 @@
               </div>
             </div>
           </div>
+          <div class="col-xl-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col mt-0">
+                    <h5 class="card-title">Komplain</h5>
+                  </div>
+                  <div class="col-auto">
+                    <div class="bg-danger text-white p-2 rounded-3">
+                      <i class="align-middle" data-feather="alert-circle"></i>
+                    </div>
+                  </div>
+                </div>
+                <h1 class="mt-1 mb-3">{{ $komplain }}</h1>
+              </div>
+            </div>
+          </div>
           
         </div>
         <div class="row">
@@ -116,12 +133,22 @@
                       <th>Prioritas</th>
                       <th>Dikirim</th>
                       <th>Ekspetasi Selesai</th>
+                      <th>Selesai</th>
+                      <th>Sisa Waktu</th>
                       {{-- <th>Penerima Tugas</th> --}}
                       <th>Aksi</th>
 										</tr>
 									</thead>
 									<tbody>
                     @foreach ($tikets as $tiket)
+                    @php
+                        $awal  = time(); //waktu awal
+                        $akhir = strtotime($tiket->ekspetasiSelesai); //waktu akhir
+                        $diff  = $akhir - $awal;
+                        $jam   = floor($diff / (60 * 60));
+                        $menit = $diff - $jam * (60 * 60);
+                        $menit = floor( $menit / 60 );
+                    @endphp
 										<tr>
 											<td>{{ $tiket->noTiket }}</td>
                       @if ($tiket->status == "Ditolak" || $tiket->status == "Komplain" || $tiket->status == "Komplain Ditolak")  
@@ -139,8 +166,22 @@
 											<td>{{ $tiket->permintaan }}</td>
 											<td>{{ $tiket->User->nama }}</td>
 											<td>{{ $tiket->prioritas }}</td>
-											<td>{{ $tiket->created_at }}</td>
-											<td>{{ $tiket->ekspetasiSelesai }}</td>
+											<td>{{ $tiket->created_at->format('d/m/y H:i') }}</td>
+                      @if (isset($tiket->ekspetasiSelesai))
+                        <td>{{ date('d/m/y H:i', strtotime($tiket->ekspetasiSelesai)) }}</td>
+                      @else
+                        <td>-</td>
+                      @endif
+                      @if ($tiket->status == "Selesai")
+											  <td>{{ $tiket->updated_at->format('d/m/y H:i') }}</td>
+                      @else
+                        <td>-</td>
+                      @endif
+                      @if ($tiket->status != "Dikirim" && $tiket->status != "Diterima" && $tiket->status != "Ditahan" && $tiket->status != "Ditolak" && $tiket->status != "Selesai")
+                        <td class="text-danger fw-bold">{{ $jam }} Jam {{ $menit }} Menit</td>
+                      @else
+                        <td>-</td>
+                      @endif
 											{{-- <td>@if ($tiket->status != 'Dikirim')
                         {{ $tiket->Teknisi->nama }}
                       @endif </td> --}}

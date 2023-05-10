@@ -8,6 +8,8 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Carbon\Carbon;
+use DateTime;
 
 class TiketContoller extends Controller
 {
@@ -19,6 +21,7 @@ class TiketContoller extends Controller
             'ditolak'   => Tiket::where('status', 'Ditolak')->count(),
             'berlangsung'   => Tiket::whereNot('status', 'Ditolak')->whereNot('status', 'Selesai')->count(),
             'selesai'   => Tiket::where('status', 'Selesai')->count(),
+            'komplain'   => Tiket::where('status', 'komplain')->count(),
         ]);
     }
 

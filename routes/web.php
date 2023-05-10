@@ -2,11 +2,14 @@
 
 use App\Http\Controllers\Admin\DepartemenController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Admin\TiketContoller;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Karyawan\HomeController as KaryawanHomeController;
 use App\Http\Controllers\Karyawan\TiketController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Pimpinan\HomeController as PimpinanHomeController;
+use App\Http\Controllers\Pimpinan\LaporanController as PimpinanLaporanController;
 use App\Http\Controllers\Teknisi\HomeController as TeknisiHomeController;
 use App\Http\Controllers\Teknisi\TiketController as TeknisiTiketController;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +43,10 @@ Route::controller(TeknisiHomeController::class)->group(function() {
     Route::get('/teknisi/home', 'index')->middleware('auth');
 });
 
+Route::controller(PimpinanHomeController::class)->group(function() {
+    Route::get('/pimpinan/home', 'index')->middleware('auth');
+});
+
 Route::controller(TiketContoller::class)->group(function() {
     Route::get('/admin/tiket', 'index');
     Route::get('/admin/tiket/detail/{tiket:idTiket}', 'detail');
@@ -67,8 +74,23 @@ Route::controller(TeknisiTiketController::class)->group(function() {
     Route::get('/teknisi/tiket/detail/{tiket:idTiket}', 'detail');
     Route::get('/teknisi/tiket/detailPenugasan/{tiket:idTiket}', 'detailPenugasan');
     Route::post('/teknisi/tiket/penugasan/{tiket:idTiket}', 'penugasan');
+    Route::get('/teknisi/tiket/suratPenugasan/{tiket:idTiket}', 'suratPenugasan');
     Route::get('/teknisi/tiket/detailValidasi/{tiket:idTiket}', 'detailValidasi');
     Route::post('/teknisi/tiket/validasi/{tiket:idTiket}', 'validasi');
+});
+
+Route::controller(LaporanController::class)->group(function() {
+    Route::get('/admin/laporan', 'index');
+    Route::get('/admin/laporan/all', 'all');
+    Route::get('/admin/laporan/target', 'target');
+    Route::get('/admin/laporan/one/{tiket:idTiket}', 'one');
+});
+
+Route::controller(PimpinanLaporanController::class)->group(function() {
+    Route::get('/pimpinan/laporan', 'index');
+    Route::get('/pimpinan/laporan/all', 'all');
+    Route::get('/pimpinan/laporan/target', 'target');
+    Route::get('/pimpinan/laporan/one/{tiket:idTiket}', 'one');
 });
 
 Route::controller(UserController::class)->group(function() {

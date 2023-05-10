@@ -12,7 +12,7 @@ class HomeController extends Controller
 {
     public function index() {
 
-        $tikets = Tiket::select(DB::raw("DATE_FORMAT(created_at,'%d') AS date"), DB::raw('count(*) as total'))->whereMonth('created_at', date('m'))->groupBy('date')->get();
+        $tikets = Tiket::select(DB::raw("DATE_FORMAT(created_at,'%d') AS date"), DB::raw('count(*) as total'))->whereMonth('created_at', date('m'))->groupBy('date')->orderBy('date', 'asc')->get();
         
         $label = [];
         $total = [];
@@ -25,6 +25,7 @@ class HomeController extends Controller
         return view('admin.home.index', [
             'label' => $label,
             'total' => $total,
+            'dikirim'   => Tiket::where('status', 'Dikirim')->count(),
         ]);
 
     }

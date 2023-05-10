@@ -36,6 +36,12 @@ class LoginController extends Controller
             return redirect()->intended('/teknisi/home');
         }
 
+        if (Auth::attempt(['email' =>  $credentials['email'], 'password' => $credentials['password'], 'tipe' => 'pimpinan'])) {
+            $request->session()->regenerate();
+            
+            return redirect()->intended('/pimpinan/home');
+        }
+
         return back()->with([
             'loginError' => 'Login field!',
         ]);

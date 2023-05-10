@@ -48,6 +48,10 @@
               </div>
               <hr />
               <div class="mb-3">
+                <a href="/teknisi/tiket/suratPenugasan/{{ $tiket->idTiket }}" target="_blank" class="btn btn-primary">Surat Permintaan Kerja</a>
+              </div>
+              <hr />
+              <div class="mb-3">
                 <label for="prioritas" class="form-label">Prioritas</label>
                 <input type="text" class="form-control @error('prioritas') is-invalid @enderror" id="prioritas" name="prioritas" value="{{ old('prioritas', $tiket->prioritas) }}" autocomplete="off" readonly="on">
                 @error('prioritas')
@@ -110,7 +114,16 @@
                   <strong>{{ $detailTiket->status }}</strong><br />
                   <span>{{ $detailTiket->keterangan }}</span><br />
                   @isset($detailTiket->keteranganTambahan)
-                    <div class="border text-sm text-muted p-2 mt-1 md-2">{{ $detailTiket->keteranganTambahan }}</div>
+                  <div>
+                    <a class="btn btn-link btn-sm" data-bs-toggle="collapse" href="#collapse{{ $detailTiket->idDetailTiket }}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                      Lihat Detail
+                    </a>
+                  </div>
+                  <div class="collapse" id="collapse{{ $detailTiket->idDetailTiket }}">
+                    <div class="border text-sm text-muted p-2 mt-1 md-2">
+                      {{ $detailTiket->keteranganTambahan }}
+                    </div>
+                  </div>
                   @endisset
                   <small class="text-muted">{{ $detailTiket->created_at }}</small><br />
                 </div>

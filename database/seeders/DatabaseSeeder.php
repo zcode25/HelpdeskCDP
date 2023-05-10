@@ -34,59 +34,55 @@ class DatabaseSeeder extends Seeder
 
         Departemen::create([
             'kodeDepartemen'    => 'D0002',
-            'namaDepartemen'    => 'Akutansi',
+            'namaDepartemen'    => 'Akunting',
+        ]);
+
+        Departemen::create([
+            'kodeDepartemen'    => 'D0003',
+            'namaDepartemen'    => 'Personalia',
         ]);
 
         User::create([
             'nik'           => '12345',
-            'nama'          => 'Adam Zein',
+            'nama'          => 'Admin',
             'departemen'    => 'D0001',
-            'email'         => 'adamzein@gmail.com',
-            'tel'           => '6281316671373',
+            'email'         => 'admin@gmail.com',
+            'tel'           => '6281288228600',
             'tipe'          => 'admin',
             'password'      => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
         ]);
 
         User::create([
             'nik'           => '12346',
-            'nama'          => 'Elham',
-            'departemen'    => 'D0001',
-            'email'         => 'elham@gmail.com',
-            'tel'           => '6281316671375',
-            'tipe'          => 'teknisi',
+            'nama'          => 'Agung Maulana',
+            'departemen'    => 'D0002',
+            'email'         => 'AgungMaulana@gmail.com',
+            'tel'           => '6281316671378',
+            'tipe'          => 'pimpinan',
             'password'      => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
         ]);
 
         User::create([
             'nik'           => '12347',
-            'nama'          => 'Dimas',
+            'nama'          => 'Adam Zein',
             'departemen'    => 'D0001',
-            'email'         => 'dimas@gmail.com',
-            'tel'           => '6281316671376',
+            'email'         => 'adamzein@gmail.com',
+            'tel'           => '6281316671373',
             'tipe'          => 'teknisi',
             'password'      => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
         ]);
 
+        
+
         User::create([
             'nik'           => '12348',
             'nama'          => 'Indra',
-            'departemen'    => 'D0002',
+            'departemen'    => 'D0003',
             'email'         => 'indra@gmail.com',
             'tel'           => '6281316671377',
             'tipe'          => 'karyawan',
             'password'      => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
         ]);
-
-        User::create([
-            'nik'           => '12349',
-            'nama'          => 'Agung',
-            'departemen'    => 'D0002',
-            'email'         => 'Agung@gmail.com',
-            'tel'           => '6281316671378',
-            'tipe'          => 'karyawan',
-            'password'      => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
-        ]);
-
         
 
         // Tiket::create([

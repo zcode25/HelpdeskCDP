@@ -7,6 +7,7 @@ use App\Models\Tiket;
 use App\Models\DetailTiket;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 
 class TiketController extends Controller
@@ -51,6 +52,15 @@ class TiketController extends Controller
         DetailTiket::Create($detailTiket);
 
         return redirect('/teknisi/tiket')->with('success', 'Data tiket berhasil diperbaruhi');
+    }
+
+    public function suratPenugasan(Tiket $tiket) {
+	    $data = [
+	            'tiket' => $tiket
+	    ];
+
+        $pdf = Pdf::loadView('teknisi.tiket.suratPenugasan', $data);
+        return $pdf->stream('suratPenugasan.pdf');
     }
 
     public function detailValidasi(Tiket $tiket) {

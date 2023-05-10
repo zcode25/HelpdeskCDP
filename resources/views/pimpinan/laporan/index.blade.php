@@ -1,8 +1,8 @@
-@extends('layouts.teknisi')
+@extends('layouts.pimpinan')
 @section('container')
     <main class="content">
       <div class="container-fluid p-0">
-        <h1 class="h3 mb-3">Daftar Tiket</h1>
+        <h1 class="h3 mb-3">Laporan</h1>
         @if (session()->has('success'))  
           <div class="badge bg-success text-white mb-2">
             {{ session('success') }}
@@ -13,11 +13,27 @@
             {{ session('error') }}
           </div>
         @endif
+      
         <div class="row">
           <div class="col-12">
             <div class="card">
               <div class="card-body">
-                {{-- <a href="/karyawan/tiket/create" class="btn btn-primary btn-sm mb-3"><i class="me-2" data-feather="layers"></i> <span class="align-middle">Buat Tiket</span></a> --}}
+                <form class="row g-3" action="/admin/laporan/target" method="GET">
+                  <div class="col-auto">
+                    <label for="dariTanggal" class="visually-hidden">Dari Tanggal</label>
+                    <input type="date" class="form-control form-control-sm" id="dariTanggal" name="dariTanggal" placeholder="Dari Tanggal" required>
+                  </div>
+                  <div class="col-auto">
+                    <label for="sampaiTanggal" class="visually-hidden">Sampai Tanggal</label>
+                    <input type="date" class="form-control form-control-sm" id="sampaiTanggal" name="sampaiTanggal" placeholder="Sampai Tanggal" required>
+                  </div>
+                  <div class="col-auto">
+                    <button type="submit" class="btn btn-primary btn-sm mb-3" formtarget="_blank"><i data-feather="printer"></i></button>
+                  </div>
+                  <div class="col-auto">
+                    <a href="/admin/laporan/all" target="_Blank" class="btn btn-primary btn-sm mb-3"><i class="me-2" data-feather="printer"></i> <span class="align-middle">Print Semua Tiket</span></a>
+                  </div>
+                </form>
                 <table class="table my-0 table-sm">
 									<thead>
 										<tr>
@@ -27,10 +43,8 @@
                       <th>Permintaan</th>
                       <th>Prioritas</th>
                       <th>Dikirim</th>
-                      <th>Ekspetasi Selesai</th>
-                      <th>Sisa Waktu</th>
-                      {{-- <th>Prioritas</th> --}}
-                      {{-- <th>Penerima Tugas</th> --}}
+                      {{-- <th>Ekspetasi Selesai</th> --}}
+                      <th>Selesai</th>
                       <th>Aksi</th>
 										</tr>
 									</thead>
@@ -46,7 +60,7 @@
                     @endphp
 										<tr>
 											<td>{{ $tiket->noTiket }}</td>
-											@if ($tiket->status == "Ditolak" || $tiket->status == "Komplain" || $tiket->status == "Komplain Ditolak")  
+                      @if ($tiket->status == "Ditolak" || $tiket->status == "Komplain" || $tiket->status == "Komplain Ditolak")  
                         <td><span class="badge bg-danger text-white">{{ $tiket->status }}</span></td>
                       @elseIf ($tiket->status == "Validasi" || $tiket->status == "Ditahan" || $tiket->status == "Komplain Ditahan")  
                         <td><span class="badge bg-warning text-white">{{ $tiket->status }}</span></td>
@@ -57,33 +71,22 @@
                       @elseIf ($tiket->status == "Selesai")  
                         <td><span class="badge bg-success text-white">{{ $tiket->status }}</span></td>
                       @endif
+											
 											<td>{{ $tiket->permintaan }}</td>
 											<td>{{ $tiket->User->nama }}</td>
 											<td>{{ $tiket->prioritas }}</td>
 											<td>{{ $tiket->created_at->format('d/m/y H:i') }}</td>
-											<td>{{ date('d/m/y H:i', strtotime($tiket->ekspetasiSelesai)) }}</td>
-                      @if ($tiket->status != "Dikirim" && $tiket->status != "Diterima" && $tiket->status != "Ditahan" && $tiket->status != "Ditolak"  && $tiket->status != "Selesai")
-                        <td class="text-danger fw-bold">{{ $jam }} Jam {{ $menit }} Menit</td>
+                      {{-- @if (isset($tiket->ekspetasiSelesai))
+											  <td>{{ date('d/m/y H:i', strtotime($tiket->ekspetasiSelesai)) }}</td>
                       @else
-                        <td> - </td>
+                        <td>-</td>
+                      @endif --}}
+                      @if ($tiket->status == "Selesai")
+											  <td>{{ $tiket->updated_at->format('d/m/y H:i') }}</td>
+                      @else
+                        <td>-</td>
                       @endif
-											{{-- <td>@if ($tiket->status != 'Dikirim')
-                        {{ $tiket->Teknisi->nama }}
-                      @endif </td> --}}
-                      @if ($tiket->status == "Penugasan" || $tiket->status == "Penugasan Komplain")
-                      <td>
-                        <a href="/teknisi/tiket/detailPenugasan/{{ $tiket->idTiket }}" class="btn btn-success btn-sm"><i class="align-middle" data-feather="eye"></i></a>
-                      </td>
-                      @elseif ($tiket->status == "Dikerjakan")
-                      <td>
-                        <a href="/teknisi/tiket/detailValidasi/{{ $tiket->idTiket }}" class="btn btn-success btn-sm"><i class="align-middle" data-feather="eye"></i></a>
-                      </td>
-                      @elseif ($tiket->status == "Validasi" || $tiket->status == "Selesai")
-                      <td>
-                        <a href="/teknisi/tiket/detail/{{ $tiket->idTiket }}" class="btn btn-success btn-sm"><i class="align-middle" data-feather="eye"></i></a>
-                      </td>
-                      @endIf
-                      
+                      <td><a href="/admin/laporan/one/{{ $tiket->idTiket }}" target="_Blank" class="btn btn-primary btn-sm"><i  data-feather="printer"></i> <span class="align-middle"></span></a></td>
 										</tr>
                     @endforeach
                   </tbody>
