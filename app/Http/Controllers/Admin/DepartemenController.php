@@ -10,7 +10,7 @@ class DepartemenController extends Controller
 {
     public function index() {
         return view('admin.departemen.index', [
-            'departemens'  => Departemen::all()
+            'departemens'  => Departemen::orderBy('namaDepartemen', 'ASC')->get()
         ]);
     }
 

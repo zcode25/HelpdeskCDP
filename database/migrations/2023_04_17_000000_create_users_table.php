@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->char('nik', 5)->primary();
+            $table->char('nik', 9)->primary();
             $table->string('nama', 50);
             $table->char('departemen', 5);
             $table->foreign('departemen')->references('kodeDepartemen')->on('departemens')->onUpdate('cascade')->onDelete('restrict');

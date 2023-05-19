@@ -13,7 +13,7 @@ class UserController extends Controller
     
     public function index() {
         return view('admin.user.index', [
-            'users' => User::all()
+            'users' => User::orderBy('nama', 'ASC')->get()
         ]);
     }
 
@@ -25,7 +25,7 @@ class UserController extends Controller
 
     public function store(Request $request) {
         $validatedData = $request->validate([
-            'nik'              => 'required|max:5',
+            'nik'              => 'required|max:9',
             'nama'              => 'required|max:50',
             'departemen'       => 'required',
             'email'             => 'required|email:dns|unique:users',

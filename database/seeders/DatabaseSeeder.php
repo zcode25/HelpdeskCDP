@@ -10,6 +10,7 @@ use App\Models\Departemen;
 use App\Models\DetailTiket;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -28,34 +29,34 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         Departemen::create([
-            'kodeDepartemen'    => 'D0001',
+            'kodeDepartemen'    => 'D4562',
             'namaDepartemen'    => 'IT',
         ]);
 
         Departemen::create([
-            'kodeDepartemen'    => 'D0002',
+            'kodeDepartemen'    => 'D3212',
             'namaDepartemen'    => 'Akunting',
         ]);
 
         Departemen::create([
-            'kodeDepartemen'    => 'D0003',
+            'kodeDepartemen'    => 'D8987',
             'namaDepartemen'    => 'Personalia',
         ]);
 
         User::create([
-            'nik'           => '12345',
+            'nik'           => rand(100000000, 999999999),
             'nama'          => 'Admin',
-            'departemen'    => 'D0001',
+            'departemen'    => 'D4562',
             'email'         => 'admin@gmail.com',
             'tel'           => '6281288228600',
             'tipe'          => 'admin',
-            'password'      => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+            'password'      => Hash::make('ciracas24'),
         ]);
 
         User::create([
-            'nik'           => '12346',
+            'nik'           => rand(100000000, 999999999),
             'nama'          => 'Agung Maulana',
-            'departemen'    => 'D0002',
+            'departemen'    => 'D3212',
             'email'         => 'AgungMaulana@gmail.com',
             'tel'           => '6281316671378',
             'tipe'          => 'pimpinan',
@@ -63,9 +64,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::create([
-            'nik'           => '12347',
+            'nik'           => rand(100000000, 999999999),
             'nama'          => 'Adam Zein',
-            'departemen'    => 'D0001',
+            'departemen'    => 'D4562',
             'email'         => 'adamzein@gmail.com',
             'tel'           => '6281316671373',
             'tipe'          => 'teknisi',
@@ -75,9 +76,9 @@ class DatabaseSeeder extends Seeder
         
 
         User::create([
-            'nik'           => '12348',
+            'nik'           => rand(100000000, 999999999),
             'nama'          => 'Indra',
-            'departemen'    => 'D0003',
+            'departemen'    => 'D8987',
             'email'         => 'indra@gmail.com',
             'tel'           => '6281316671377',
             'tipe'          => 'karyawan',

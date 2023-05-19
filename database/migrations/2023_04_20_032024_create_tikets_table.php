@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('tikets', function (Blueprint $table) {
             $table->uuid('idTiket')->primary();
             $table->char('noTiket', 20);
-            $table->char('user', 5);
+            $table->char('user', 9);
             $table->foreign('user')->references('nik')->on('users')->onUpdate('cascade')->onDelete('restrict');
-            $table->char('teknisi', 5)->nullable();
+            $table->char('teknisi', 9)->nullable();
             $table->foreign('teknisi')->references('nik')->on('users')->onUpdate('cascade')->onDelete('restrict');
             $table->string('permintaan');
             $table->string('uraianPermintaan');

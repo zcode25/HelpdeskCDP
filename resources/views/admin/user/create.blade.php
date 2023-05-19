@@ -12,7 +12,7 @@
               @csrf
               <div class="mb-3">
                 <label for="nik" class="form-label">NIK</label>
-                <input type="text" class="form-control @error('nik') is-invalid @enderror" id="nik" name="nik" value="{{ old('nik') }}" autocomplete="off">
+                <input type="text" class="form-control @error('nik') is-invalid @enderror" id="nik" name="nik" value="{{ rand(100000000, 999999999) }}" autocomplete="off">
                 @error('nik') 
                   <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -45,7 +45,7 @@
               </div>
               <div class="mb-3">
                 <label for="tel" class="form-label">Telepon</label>
-                <input type="tel" class="form-control @error('tel') is-invalid @enderror" id="tel" name="tel" value="{{ old('tel') }}" autocomplete="off">
+                <input type="tel" class="form-control @error('tel') is-invalid @enderror" id="tel" name="tel" value="{{ 62812 . rand(10000000, 99999999) }}" autocomplete="off">
                 @error('tel') 
                   <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
