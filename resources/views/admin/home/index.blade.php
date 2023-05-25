@@ -7,8 +7,7 @@
           <div class="col-12 col-lg-6">
             <div class="card flex-fill w-100">
               <div class="card-header">
-                <h5 class="card-title">Amount Tickets in {{ date('M') }}</h5>
-                {{-- <h6 class="card-subtitle text-muted">A line chart is a way of plotting data points on a line.</h6> --}}
+                <h5 class="card-title">Jumlah Tiket Bulan {{ date('M') }}</h5>
               </div>
               <div class="card-body">
                 @if ($label)
@@ -21,6 +20,33 @@
                   <h5>Data is still empty</h5>
                 </div>
                 @endif 
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-lg-6">
+            <div class="card flex-fill w-100">
+              <div class="card-header">
+                <h5 class="card-title">Tiket Status Dikirim</h5>
+              </div>
+              <div class="card-body">
+                <table class="table my-0 table-sm">
+									<thead>
+										<tr>
+											<th>No Tiket</th>
+											<th>Permintaan</th>
+                      <th>Judul</th>
+										</tr>
+									</thead>
+									<tbody>
+                    @foreach ($tikets as $tiket)
+										<tr>
+											<td class="align-baseline">{{ $tiket->noTiket }}</td>
+											<td class="align-baseline">{{ $tiket->User->nama }}</td>
+											<td class="align-baseline">{{ $tiket->permintaan }}</td>
+										</tr>
+                    @endforeach
+                  </tbody>
+                </table> 
               </div>
             </div>
           </div>

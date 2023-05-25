@@ -18,6 +18,8 @@ class DetailTiket extends Model
         'keteranganTambahan'
     ];
 
+    // protected $with = ['Tiket'];
+
     public function tiket() {
         return $this->belongsTo(Tiket::class, 'tiket', 'idTiket');
     }

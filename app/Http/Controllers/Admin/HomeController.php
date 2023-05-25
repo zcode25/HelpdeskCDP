@@ -12,8 +12,8 @@ class HomeController extends Controller
 {
     public function index() {
 
-        $tikets = Tiket::select(DB::raw("DATE_FORMAT(created_at,'%d') AS date"), DB::raw('count(*) as total'))->whereMonth('created_at', date('m'))->groupBy('date')->orderBy('date', 'asc')->get();
-        
+        $tikets = Tiket::select( DB::raw("DATE_FORMAT(created_at,'%d') AS date"), DB::raw('count(*) as total'))->whereMonth('created_at', date('m'))->groupBy('date')->orderBy('date', 'asc')->get();
+
         $label = [];
         $total = [];
         foreach($tikets as $tiket) {
@@ -26,6 +26,7 @@ class HomeController extends Controller
             'label' => $label,
             'total' => $total,
             'dikirim'   => Tiket::where('status', 'Dikirim')->count(),
+            'tikets' => Tiket::where('status', 'Dikirim')->get(),
         ]);
 
     }

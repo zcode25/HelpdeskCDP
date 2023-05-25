@@ -18,7 +18,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-body">
-                <form class="row g-3" action="/admin/laporan/target" method="GET">
+                <form class="row g-3" action="/pimpinan/laporan/target" method="GET">
                   <div class="col-auto">
                     <label for="dariTanggal" class="visually-hidden">Dari Tanggal</label>
                     <input type="date" class="form-control form-control-sm" id="dariTanggal" name="dariTanggal" placeholder="Dari Tanggal" required>
@@ -31,7 +31,7 @@
                     <button type="submit" class="btn btn-primary btn-sm mb-3" formtarget="_blank"><i data-feather="printer"></i></button>
                   </div>
                   <div class="col-auto">
-                    <a href="/admin/laporan/all" target="_Blank" class="btn btn-primary btn-sm mb-3"><i class="me-2" data-feather="printer"></i> <span class="align-middle">Print Semua Tiket</span></a>
+                    <a href="/pimpinan/laporan/all" target="_Blank" class="btn btn-primary btn-sm mb-3"><i class="me-2" data-feather="printer"></i> <span class="align-middle">Print Semua Tiket</span></a>
                   </div>
                 </form>
                 <table class="table my-0 table-sm">
@@ -86,7 +86,7 @@
                       @else
                         <td>-</td>
                       @endif
-                      <td><a href="/admin/laporan/one/{{ $tiket->idTiket }}" target="_Blank" class="btn btn-primary btn-sm"><i  data-feather="printer"></i> <span class="align-middle"></span></a></td>
+                      <td><a href="/pimpinan/laporan/one/{{ $tiket->idTiket }}" target="_Blank" class="btn btn-primary btn-sm"><i  data-feather="printer"></i> <span class="align-middle"></span></a></td>
 										</tr>
                     @endforeach
                   </tbody>

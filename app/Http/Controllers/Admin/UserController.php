@@ -28,7 +28,7 @@ class UserController extends Controller
             'nik'              => 'required|max:9',
             'nama'              => 'required|max:50',
             'departemen'       => 'required',
-            'email'             => 'required|email:dns|unique:users',
+            'email'             => 'required|email|unique:users',
             'tel'             => 'required|max:15',
             'password'          => 'required|min:8|max:50',
         ]);
@@ -49,10 +49,10 @@ class UserController extends Controller
 
     public function update(Request $request, User $user) {
         $validatedData = $request->validate([
-            'nik'              => 'required|max:5',
+            'nik'              => 'required|max:9',
             'nama'              => 'required|max:50',
             'departemen'       => 'required',
-            'email'             => 'required|email:dns',
+            'email'             => 'required|email',
             'tel'             => 'required|max:15',
         ]);
 

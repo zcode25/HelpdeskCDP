@@ -94,15 +94,18 @@
     </table>
     <br />
     <br />
-    <table class="ttd" style="width:20%; text-align:center; border:none">
+    <table class="ttd" style="width:100%; text-align:center; border:none">
       <tr>
-        <td>Admin IT Helpdesk</td>
+        <td tyle="width:50%;">Pembuat</td>
+        <td>Pimpinan</td>
       </tr>
       <tr>
         <td><br><br>ttd<br><br><br></td>
+        <td><br><br>ttd<br><br><br></td>
       </tr>
       <tr>
-        <td>{{ auth()->user()->nama }}</td>
+        <td>Admin IT Helpdesk</td>
+        <td>Agung Maulana</td>
       </tr>
     </table>
 </body>

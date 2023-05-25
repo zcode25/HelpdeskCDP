@@ -2,7 +2,7 @@
   <nav id="sidebar" class="sidebar js-sidebar">
     <div class="sidebar-content js-simplebar">
       <a class="sidebar-brand" href="/pimpinan/home">
-        <span class="align-middle">IT Helpdesk</span>
+        <span class="align-middle">CDP IT Helpdesk</span>
       </a>
 
       <ul class="sidebar-nav">
@@ -37,7 +37,7 @@
             </a>
 
             <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-              <span class="text-dark">Hello, {{ auth()->user()->nama }}</span>
+              <span class="text-dark">Selamat datang, {{ auth()->user()->nama }}</span>
               
             </a>
             <div class="dropdown-menu dropdown-menu-end">

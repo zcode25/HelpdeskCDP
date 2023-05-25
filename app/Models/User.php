@@ -28,6 +28,7 @@ class User extends Authenticatable
     ];
 
     protected $primaryKey = 'nik';
+    protected $with = ['Departemen'];
 
     /**
      * The attributes that should be hidden for serialization.

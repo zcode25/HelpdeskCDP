@@ -20,8 +20,9 @@ class Tiket extends Model
         'ekspetasiSelesai',
         'prioritas',
         'status',
-
     ];
+
+    // protected $with=['User'];
 
     public function detailTiket() {
         return $this->hasMany(DetailTiket::class);

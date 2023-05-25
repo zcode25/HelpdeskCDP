@@ -4,9 +4,10 @@
       <div class="container-fluid p-0">
         <h1 class="h3 mb-3">Daftar User</h1>
         @if (session()->has('success'))  
-          <div class="badge bg-success text-white mb-2">
-            {{ session('success') }}
-          </div>
+        <div class="alert alert-warning alert-dismissible fade show badge bg-success mb-3" role="alert">
+          <span>{{ session('success') }}</span>
+          <button type="button" class="ms-3 btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
         @endif
         <div class="row">
           <div class="col-12">

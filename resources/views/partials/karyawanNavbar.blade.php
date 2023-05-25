@@ -2,16 +2,16 @@
   <nav id="sidebar" class="sidebar js-sidebar">
     <div class="sidebar-content js-simplebar">
       <a class="sidebar-brand" href="/admin/home">
-        <span class="align-middle">IT Helpdesk</span>
+        <span class="align-middle">CDP IT Helpdesk</span>
       </a>
 
       <ul class="sidebar-nav">
 
-        <li class="sidebar-item {{ Request::is('karyawan/home*') ? 'active' : '' }}">
+        {{-- <li class="sidebar-item {{ Request::is('karyawan/home*') ? 'active' : '' }}">
           <a class="sidebar-link" href="/karyawan/home">
             <i class="align-middle" data-feather="home"></i> <span class="align-middle">Home</span>
           </a>
-        </li>
+        </li> --}}
 
         <li class="sidebar-item {{ Request::is('karyawan/tiket*') ? 'active' : '' }}">
           <a class="sidebar-link" href="/karyawan/tiket">
@@ -37,7 +37,7 @@
             </a>
 
             <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-              <span class="text-dark">Hello, {{ auth()->user()->nama }}</span>
+              <span class="text-dark">Selamat datang, {{ auth()->user()->nama }}</span>
               
             </a>
             <div class="dropdown-menu dropdown-menu-end">

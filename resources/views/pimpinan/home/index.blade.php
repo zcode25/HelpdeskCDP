@@ -7,22 +7,82 @@
           <div class="col-12 col-lg-6">
             <div class="card flex-fill w-100">
               <div class="card-header">
-                <h5 class="card-title">Jumlah {{ date('Y') }}</h5>
+                <h5 class="card-title">Jumlah Tiket Bulan {{ date('M') }}</h5>
               </div>
-    
-            </div>
-          </div>
-          <div class="col-12 col-lg-6">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="card-title">Kategori</h5>
-                {{-- <h6 class="card-subtitle text-muted">A bar chart provides a way of showing data values represented as vertical bars.</h6> --}}
+              <div class="card-body">
+                @if ($label)
+                <div class="chart">
+                  <canvas id="chartjs-line"></canvas>
+                </div>
+                @else
+                <div class="text-center">
+                  <i class="align-middle mb-2" data-feather="alert-circle"></i>
+                  <h5>Data is still empty</h5>
+                </div>
+                @endif 
               </div>
-              
             </div>
           </div>
         </div>
       </div>
     </main>
+
+    <script>
+      var label =  {{ Js::from($label) }};
+      var total =  {{ Js::from($total) }};
+
+      document.addEventListener("DOMContentLoaded", function() {
+        // Line chart
+        new Chart(document.getElementById("chartjs-line"), {
+          type: "line",
+          data: {
+            labels: label,
+            datasets: [{
+              label: "Total",
+              fill: true,
+              backgroundColor: "transparent",
+              borderColor: window.theme.primary,
+              data: total
+            }]
+          },
+          options: {
+            maintainAspectRatio: false,
+            legend: {
+              display: false
+            },
+            tooltips: {
+              intersect: false
+            },
+            hover: {
+              intersect: true
+            },
+            plugins: {
+              filler: {
+                propagate: false
+              }
+            },
+            scales: {
+              xAxes: [{
+                reverse: true,
+                gridLines: {
+                  color: "rgba(0,0,0,0.05)"
+                }
+              }],
+              yAxes: [{
+                ticks: {
+                  stepSize: 500
+                },
+                display: true,
+                borderDash: [5, 5],
+                gridLines: {
+                  color: "rgba(0,0,0,0)",
+                  fontColor: "#fff"
+                }
+              }]
+            }
+          }
+        });
+      });
+    </script>
 
 @endsection

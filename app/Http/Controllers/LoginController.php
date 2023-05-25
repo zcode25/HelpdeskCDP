@@ -14,14 +14,14 @@ class LoginController extends Controller
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
-            'email'     => 'required|email:dns',
+            'email'     => 'required',
             'password'  => 'required',
         ]);
  
         if (Auth::attempt(['email' =>  $credentials['email'], 'password' => $credentials['password'], 'tipe' => 'karyawan'])) {
             $request->session()->regenerate();
  
-            return redirect()->intended('/karyawan/home');
+            return redirect()->intended('/karyawan/tiket');
         }
 
         if (Auth::attempt(['email' =>  $credentials['email'], 'password' => $credentials['password'], 'tipe' => 'admin'])) {
@@ -33,7 +33,7 @@ class LoginController extends Controller
         if (Auth::attempt(['email' =>  $credentials['email'], 'password' => $credentials['password'], 'tipe' => 'teknisi'])) {
             $request->session()->regenerate();
             
-            return redirect()->intended('/teknisi/home');
+            return redirect()->intended('/teknisi/tiket');
         }
 
         if (Auth::attempt(['email' =>  $credentials['email'], 'password' => $credentials['password'], 'tipe' => 'pimpinan'])) {
