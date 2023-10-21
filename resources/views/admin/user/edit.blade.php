@@ -50,6 +50,18 @@
                   <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>
+              <div class="mb-3">
+                <label for="tipe" class="form-label">Tipe</label>
+                <select class="form-select" id="tipe" name="tipe">
+                    @foreach ($tipes as $tipe)
+                        @if (old('tipe', $user->tipe) == $tipe['tipe'])
+                            <option value="{{ $tipe['tipe'] }}" selected>{{ $tipe['tipe'] }}</option>
+                            @else
+                            <option value="{{ $tipe['tipe'] }}">{{ $tipe['tipe'] }}</option>
+                        @endif
+                    @endforeach
+                  </select>
+              </div>
               <div class="d-grid gap-2">
                 <button type="submit" name="submit" class="btn btn-primary">Edit</button>
               </div>
@@ -60,7 +72,7 @@
       <div class="col-6">
         <div class="card">
           <div class="card-body">
-            <form action="/admin/user/updateUser3/{{ $user->id }}" method="POST">
+            <form action="/admin/user/updatePassword/{{ $user->nik }}" method="POST">
               @csrf
               <div class="mb-3">
                 <label for="password" class="form-label">Password</label>

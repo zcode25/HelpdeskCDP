@@ -24,7 +24,7 @@
 									<thead>
 										<tr>
 											<th>No</th>
-											<th>Departement</th>
+											<th>Departemen</th>
                       <th>Aksi</th>
 										</tr>
 									</thead>

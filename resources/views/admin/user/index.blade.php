@@ -50,14 +50,14 @@
                         @endif
                       </td>
                       <td>
-                        @if ($user->tipe != 'admin')
+                       
                           <a href="/admin/user/edit/{{ $user->nik }}" class="btn btn-primary btn-sm"><i class="align-middle" data-feather="edit"></i></a>
                           <form action="/admin/user/destroy/{{ $user->nik }}" method="post" class="d-inline">
                             @method('delete')
                             @csrf
                             <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin?')"><i class="align-middle" data-feather="trash"></i></button>
                           </form>
-                        @endif
+                       
                         
                       </td>
 										</tr>

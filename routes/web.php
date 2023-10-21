@@ -100,6 +100,7 @@ Route::controller(UserController::class)->group(function() {
     Route::post('/admin/user/store', 'store')->middleware(['auth', 'CekTipe:admin']);
     Route::get('/admin/user/edit/{user:nik}', 'edit')->middleware(['auth', 'CekTipe:admin']);
     Route::post('/admin/user/update/{user:nik}', 'update')->middleware(['auth', 'CekTipe:admin']);
+    Route::post('admin/user/updatePassword/{user:nik}', 'updatePassword')->middleware(['auth', 'CekTipe:admin']);
     Route::delete('/admin/user/destroy/{user:nik}', 'destroy')->middleware(['auth', 'CekTipe:admin']);
 });
 

@@ -12,7 +12,7 @@
               @csrf
               <div class="mb-3">
                 <label for="nik" class="form-label">NIK</label>
-                <input type="text" class="form-control @error('nik') is-invalid @enderror" id="nik" name="nik" value="{{ rand(100000000, 999999999) }}" autocomplete="off">
+                <input type="text" class="form-control @error('nik') is-invalid @enderror" id="nik" name="nik" value="{{ old('nik') }}" autocomplete="off">
                 @error('nik') 
                   <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -45,10 +45,22 @@
               </div>
               <div class="mb-3">
                 <label for="tel" class="form-label">Telepon</label>
-                <input type="tel" class="form-control @error('tel') is-invalid @enderror" id="tel" name="tel" value="{{ 62812 . rand(10000000, 99999999) }}" autocomplete="off">
+                <input type="tel" class="form-control @error('tel') is-invalid @enderror" id="tel" name="tel" autocomplete="off" value="{{ old('tel') }}">
                 @error('tel') 
                   <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
+              </div>
+              <div class="mb-3">
+                <label for="tipe" class="form-label">Tipe</label>
+                <select class="form-select" id="tipe" name="tipe">
+                  @foreach ($tipes as $tipe)
+                      @if (old('tipe') == $tipe['tipe'])
+                          <option value="{{ $tipe['tipe'] }}" selected>{{ $tipe['tipe'] }}</option>
+                          @else
+                          <option value="{{ $tipe['tipe'] }}">{{ $tipe['tipe'] }}</option>
+                      @endif
+                  @endforeach
+                </select>
               </div>
               <div class="mb-3">
                 <label for="password" class="form-label">Password</label>

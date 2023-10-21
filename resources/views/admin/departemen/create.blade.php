@@ -12,7 +12,7 @@
               @csrf
               <input type="hidden" id="kodeDepartemen" name="kodeDepartemen" value="{{ "D" . rand(1000, 9999) }}">
               <div class="mb-3">
-                <label for="namaDepartemen" class="form-label">Nama Departement</label>
+                <label for="namaDepartemen" class="form-label">Nama Departemen</label>
                 <input type="text" class="form-control @error('namaDepartemen') is-invalid @enderror" id="namaDepartemen" name="namaDepartemen" value="{{ old('namaDepartemen') }}" autocomplete="off">
                 @error('namaDepartemen') 
                   <div class="invalid-feedback">{{ $message }}</div>

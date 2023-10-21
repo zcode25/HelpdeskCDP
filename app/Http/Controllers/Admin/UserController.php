@@ -18,8 +18,24 @@ class UserController extends Controller
     }
 
     public function create() {
+        
+        $tipes = [
+            [
+                "tipe" => "karyawan"
+            ],
+            [
+                "tipe" => "admin"
+            ],
+            [
+                "tipe" => "teknisi"
+            ],
+            [
+                "tipe" => "pimpinan"
+            ],
+        ];
         return view('admin.user.create', [
-            'departemens' => Departemen::all()
+            'departemens'   => Departemen::all(),
+            'tipes'         => $tipes   
         ]);
     }
 
@@ -30,6 +46,7 @@ class UserController extends Controller
             'departemen'       => 'required',
             'email'             => 'required|email|unique:users',
             'tel'             => 'required|max:15',
+            'tipe'       => 'required',
             'password'          => 'required|min:8|max:50',
         ]);
 
@@ -41,9 +58,24 @@ class UserController extends Controller
     }
 
     public function edit(User $user) {
+        $tipes = [
+            [
+                "tipe" => "karyawan"
+            ],
+            [
+                "tipe" => "admin"
+            ],
+            [
+                "tipe" => "teknisi"
+            ],
+            [
+                "tipe" => "pimpinan"
+            ],
+        ];
         return view('admin.user.edit', [
             'user'          => $user,
-            'departemens'   => Departemen::all()
+            'departemens'   => Departemen::all(),
+            'tipes'         => $tipes
         ]);
     }
 
@@ -54,6 +86,7 @@ class UserController extends Controller
             'departemen'       => 'required',
             'email'             => 'required|email',
             'tel'             => 'required|max:15',
+            'tipe'       => 'required',
         ]);
 
         if ($request->email == $user->email) {
@@ -63,6 +96,18 @@ class UserController extends Controller
         User::where('nik', $user->nik)->update($validatedData);
 
         return redirect('/admin/user')->with('success', 'Data berhasil diubah');
+    }
+
+    public function updatePassword(Request $request, User $user) {
+        $validatedData = $request->validate([
+            'password'          => 'required|min:8|max:50',
+        ]);
+
+        $validatedData["password"] = Hash::make($validatedData["password"]);
+
+        User::where('nik', $user->nik)->update($validatedData);
+
+        return redirect('/admin/user')->with('success', 'Data Password berhasil diubah');
     }
 
     public function destroy(User $user) {
