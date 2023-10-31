@@ -7,7 +7,7 @@
           <div class="col-12 col-lg-6">
             <div class="card flex-fill w-100">
               <div class="card-header">
-                <h5 class="card-title">Jumlah Tiket Bulan {{ date('M') }}</h5>
+                <h5 class="card-title">Ticket Diagram in {{ date('F') }}</h5>
               </div>
               <div class="card-body">
                 @if ($label)
@@ -26,27 +26,19 @@
           <div class="col-12 col-lg-6">
             <div class="card flex-fill w-100">
               <div class="card-header">
-                <h5 class="card-title">Tiket Status Dikirim</h5>
+                <h5 class="card-title">Ticket Status Diagram</h5>
               </div>
               <div class="card-body">
-                <table class="table my-0 table-sm">
-									<thead>
-										<tr>
-											<th>No Tiket</th>
-											<th>Permintaan</th>
-                      <th>Judul</th>
-										</tr>
-									</thead>
-									<tbody>
-                    @foreach ($tikets as $tiket)
-										<tr>
-											<td class="align-baseline">{{ $tiket->noTiket }}</td>
-											<td class="align-baseline">{{ $tiket->User->nama }}</td>
-											<td class="align-baseline">{{ $tiket->permintaan }}</td>
-										</tr>
-                    @endforeach
-                  </tbody>
-                </table> 
+                @if ($label2)
+                <div class="chart">
+                  <canvas id="chartjs-dashboard-pie"></canvas>
+                </div>
+                @else
+                <div class="text-center">
+                  <i class="align-middle mb-2" data-feather="alert-circle"></i>
+                  <h5>Data is still empty</h5>
+                </div>
+                @endif 
               </div>
             </div>
           </div>
@@ -107,6 +99,41 @@
                 }
               }]
             }
+          }
+        });
+      });
+    </script>
+    <script>
+      var label2 =  {{ Js::from($label2) }};
+      var total2 =  {{ Js::from($total2) }};
+
+      document.addEventListener("DOMContentLoaded", function() {
+        // Pie chart
+        new Chart(document.getElementById("chartjs-dashboard-pie"), {
+          type: "pie",
+          data: {
+            labels: label2,
+            datasets: [{
+              data: total2,
+              backgroundColor: [
+                window.theme.secondary,
+                window.theme.primary,
+                window.theme.warning,
+                window.theme.danger,
+                window.theme.info,
+                window.theme.success,
+              ],
+              borderWidth: 5
+            }]
+          },
+          options: {
+            responsive: !window.MSInputMethodContext,
+            maintainAspectRatio: false,
+            legend: {
+              display: true,
+              position: 'right'
+            },
+            cutoutPercentage: 60
           }
         });
       });

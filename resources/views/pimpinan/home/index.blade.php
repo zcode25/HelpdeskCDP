@@ -23,6 +23,25 @@
               </div>
             </div>
           </div>
+          <div class="col-12 col-lg-6">
+            <div class="card flex-fill w-100">
+              <div class="card-header">
+                <h5 class="card-title">Ticket Status Diagram</h5>
+              </div>
+              <div class="card-body">
+                @if ($label2)
+                <div class="chart">
+                  <canvas id="chartjs-dashboard-pie"></canvas>
+                </div>
+                @else
+                <div class="text-center">
+                  <i class="align-middle mb-2" data-feather="alert-circle"></i>
+                  <h5>Data is still empty</h5>
+                </div>
+                @endif 
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </main>
@@ -80,6 +99,41 @@
                 }
               }]
             }
+          }
+        });
+      });
+    </script>
+    <script>
+      var label2 =  {{ Js::from($label2) }};
+      var total2 =  {{ Js::from($total2) }};
+
+      document.addEventListener("DOMContentLoaded", function() {
+        // Pie chart
+        new Chart(document.getElementById("chartjs-dashboard-pie"), {
+          type: "pie",
+          data: {
+            labels: label2,
+            datasets: [{
+              data: total2,
+              backgroundColor: [
+                window.theme.secondary,
+                window.theme.primary,
+                window.theme.warning,
+                window.theme.danger,
+                window.theme.info,
+                window.theme.success,
+              ],
+              borderWidth: 5
+            }]
+          },
+          options: {
+            responsive: !window.MSInputMethodContext,
+            maintainAspectRatio: false,
+            legend: {
+              display: true,
+              position: 'right'
+            },
+            cutoutPercentage: 60
           }
         });
       });

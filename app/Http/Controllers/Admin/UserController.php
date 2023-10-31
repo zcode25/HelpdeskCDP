@@ -13,7 +13,7 @@ class UserController extends Controller
     
     public function index() {
         return view('admin.user.index', [
-            'users' => User::orderBy('nama', 'ASC')->get()
+            'users' => User::orderBy('nama', 'ASC')->get(),
         ]);
     }
 

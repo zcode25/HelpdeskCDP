@@ -73,19 +73,16 @@
         <td>Pelapor</td>
         <td>Penerima</td>
         @isset($tiket->teknisi) <td>Teknisi</td> @endisset
-        <td>Pimpinan</td>
       </tr>
       <tr>
         <td><br><br>ttd<br><br><br></td>
         <td><br><br>ttd<br><br><br></td>
         @isset($tiket->teknisi) <td><br><br>ttd<br><br><br></td> @endisset
-        <td><br><br>ttd<br><br><br></td>
       </tr>
       <tr>
         <td>{{ $tiket->User->nama }}</td>
         <td>Admin IT Helpdesk</td>
         @isset($tiket->teknisi) <td>{{ $tiket->Teknisi->nama }}</td> @endisset
-        <td>Agung Maulana</td>
       </tr>
     </table>
 

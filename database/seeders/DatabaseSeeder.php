@@ -44,7 +44,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::create([
-            'nik'           => rand(100000000, 999999999),
+            'nik'           => '123456789',
             'nama'          => 'Admin',
             'departemen'    => 'D4562',
             'email'         => 'admin@gmail.com',
@@ -55,9 +55,9 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'nik'           => rand(100000000, 999999999),
-            'nama'          => 'Agung Maulana',
+            'nama'          => 'Benno Husni',
             'departemen'    => 'D3212',
-            'email'         => 'AgungMaulana@gmail.com',
+            'email'         => 'bennohusni@gmail.com',
             'tel'           => '6281316671378',
             'tipe'          => 'pimpinan',
             'password'      => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',

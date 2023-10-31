@@ -13,6 +13,8 @@ class HomeController extends Controller
     public function index() {
 
         $tikets = Tiket::select( DB::raw("DATE_FORMAT(created_at,'%d') AS date"), DB::raw('count(*) as total'))->whereMonth('created_at', date('m'))->groupBy('date')->orderBy('date', 'asc')->get();
+        $status = Tiket::select( 'status', DB::raw('count(*) as total'))->groupBy('status')->orderBy('status', 'asc')->get();
+        // dd($status);
 
         $label = [];
         $total = [];
@@ -20,13 +22,20 @@ class HomeController extends Controller
             $label[] = $tiket->date;
             $total[] = $tiket->total;
         };
+
+        $label2 = [];
+        $total2 = [];
+        foreach($status as $st) {
+            $label2[] = $st->status;
+            $total2[] = $st->total;
+        };
         
         
         return view('admin.home.index', [
             'label' => $label,
             'total' => $total,
-            'dikirim'   => Tiket::where('status', 'Dikirim')->count(),
-            'tikets' => Tiket::where('status', 'Dikirim')->get(),
+            'label2' => $label2,
+            'total2' => $total2,
         ]);
 
     }

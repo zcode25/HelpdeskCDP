@@ -34,7 +34,8 @@
                     <a href="/admin/laporan/all" target="_Blank" class="btn btn-primary btn-sm mb-3"><i class="me-2" data-feather="printer"></i> <span class="align-middle">Print Semua Tiket</span></a>
                   </div>
                 </form>
-                <table class="table my-0 table-sm">
+                <div class="table-responsive mt-3">
+                <table class="table my-0 table-sm" id="myTable">
 									<thead>
 										<tr>
 											<th>No Tiket</th>
@@ -91,6 +92,7 @@
                     @endforeach
                   </tbody>
                 </table> 
+                </div>
               </div>
             </div>
           </div>

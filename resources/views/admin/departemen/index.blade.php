@@ -11,16 +11,17 @@
         @endif
         @if (session()->has('error'))  
         <div class="alert alert-warning alert-dismissible fade show badge bg-danger mb-3" role="alert">
-          <span>{{ session('success') }}</span>
+          <span>{{ session('error') }}</span>
           <button type="button" class="ms-3 btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         @endif
         <div class="row">
-          <div class="col-6">
+          <div class="col-xl-6">
             <div class="card">
               <div class="card-body">
-                <a href="/admin/departemen/create" class="btn btn-primary btn-sm mb-3"><i class="me-2" data-feather="plus-square"></i> <span class="align-middle">Tambah Departemen</span></a>
-                <table class="table my-0 table-sm">
+                <a href="/admin/departemen/create" class="btn btn-primary btn-sm mb-3"><i class="me-2" data-feather="briefcase"></i> <span class="align-middle">Tambah Departemen</span></a>
+                <div class="table-responsive mt-3">
+                <table class="table my-0 table-sm" id="myTable">
 									<thead>
 										<tr>
 											<th>No</th>
@@ -47,6 +48,7 @@
                     @endforeach
                   </tbody>
                 </table> 
+                </div>
               </div>
             </div>
           </div>

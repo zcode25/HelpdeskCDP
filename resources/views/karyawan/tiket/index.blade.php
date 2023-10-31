@@ -20,8 +20,8 @@
             <div class="card">
               <div class="card-body">
                 <a href="/karyawan/tiket/create" class="btn btn-primary btn-sm mb-3"><i class="me-2" data-feather="layers"></i> <span class="align-middle">Buat Tiket</span></a>
-                <div class="table-responsive">
-                <table class="table my-0 table-sm">
+                <div class="table-responsive mt-3">
+                <table class="table my-0 table-sm" id="myTable">
 									<thead>
 										<tr>
 											<th>No Tiket</th>

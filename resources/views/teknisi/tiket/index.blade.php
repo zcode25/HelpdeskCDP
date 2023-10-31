@@ -20,7 +20,8 @@
             <div class="card">
               <div class="card-body">
                 {{-- <a href="/karyawan/tiket/create" class="btn btn-primary btn-sm mb-3"><i class="me-2" data-feather="layers"></i> <span class="align-middle">Buat Tiket</span></a> --}}
-                <table class="table my-0 table-sm">
+                <div class="table-responsive">
+                <table class="table my-0 table-sm" id="myTable">
 									<thead>
 										<tr>
 											<th>No Tiket</th>
@@ -32,8 +33,6 @@
                       <th>Ekspetasi</th>
                       <th>Selesai</th>
                       <th>Waktu</th>
-                      {{-- <th>Prioritas</th> --}}
-                      {{-- <th>Penerima Tugas</th> --}}
                       <th>Aksi</th>
 										</tr>
 									</thead>
@@ -86,7 +85,7 @@
                       <td class="align-baseline">
                         <a href="/teknisi/tiket/detailValidasi/{{ $tiket->idTiket }}" class="btn btn-primary btn-sm"><i class="align-middle" data-feather="edit"></i></a>
                       </td>
-                      @elseif ($tiket->status == "Validasi" || $tiket->status == "Selesai")
+                      @elseif ($tiket->status == "Validasi" || $tiket->status == "Selesai" || $tiket->status == "Komplain Ditahan")
                       <td class="align-baseline">
                         <a href="/teknisi/tiket/detail/{{ $tiket->idTiket }}" class="btn btn-primary btn-sm"><i class="align-middle" data-feather="edit"></i></a>
                       </td>
@@ -96,6 +95,7 @@
                     @endforeach
                   </tbody>
                 </table> 
+                </div>
               </div>
             </div>
           </div>

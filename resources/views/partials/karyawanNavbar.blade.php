@@ -1,7 +1,7 @@
 <div class="wrapper">
   <nav id="sidebar" class="sidebar js-sidebar">
     <div class="sidebar-content js-simplebar">
-      <a class="sidebar-brand" href="/admin/home">
+      <a class="sidebar-brand" href="">
         <span class="align-middle">CDP IT Helpdesk</span>
       </a>
 

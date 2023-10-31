@@ -16,7 +16,7 @@
         </div>
         @endif
         <div class="row">
-          <div class="col-xl-4">
+          <div class="col-xl-4 col-md-6">
             <div class="card">
               <div class="card-body">
                 <div class="row">
@@ -33,7 +33,7 @@
               </div>
             </div>
           </div>
-          <div class="col-xl-4">
+          <div class="col-xl-4 col-md-6">
             <div class="card">
               <div class="card-body">
                 <div class="row">
@@ -50,7 +50,7 @@
               </div>
             </div>
           </div>
-          <div class="col-xl-4">
+          <div class="col-xl-4 col-md-6">
             <div class="card">
               <div class="card-body">
                 <div class="row">
@@ -67,7 +67,7 @@
               </div>
             </div>
           </div>
-          <div class="col-xl-4">
+          <div class="col-xl-4 col-md-6">
             <div class="card">
               <div class="card-body">
                 <div class="row">
@@ -84,7 +84,7 @@
               </div>
             </div>
           </div>
-          <div class="col-xl-4">
+          <div class="col-xl-4 col-md-6">
             <div class="card">
               <div class="card-body">
                 <div class="row">
@@ -101,7 +101,7 @@
               </div>
             </div>
           </div>
-          <div class="col-xl-4">
+          <div class="col-xl-4 col-md-6">
             <div class="card">
               <div class="card-body">
                 <div class="row">
@@ -125,7 +125,8 @@
             <div class="card">
               <div class="card-body">
                 {{-- <a href="/admin/departemen/create" class="btn btn-primary btn-sm mb-3"><i class="me-2" data-feather="user-plus"></i> <span class="align-middle">Tambah Departemen</span></a> --}}
-                <table class="table my-0 table-sm">
+                <div class="table-responsive">
+                <table class="table my-0 table-sm" id="myTable">
 									<thead>
 										<tr>
 											<th>No Tiket</th>
@@ -220,6 +221,7 @@
                     @endforeach
                   </tbody>
                 </table> 
+                </div>
               </div>
             </div>
           </div>

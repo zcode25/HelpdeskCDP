@@ -14,7 +14,8 @@
             <div class="card">
               <div class="card-body">
                 <a href="/admin/user/create" class="btn btn-primary btn-sm mb-3"><i class="me-2" data-feather="user-plus"></i> <span class="align-middle">Tambah User</span></a>
-                <table class="table my-0 table-sm">
+                <div class="table-responsive mt-3">
+                <table class="table my-0 table-sm" id="myTable">
 									<thead>
 										<tr>
 											<th>No</th>
@@ -32,13 +33,13 @@
                     @foreach ($users as $user)
               
 										<tr>
-											<td>{{ $i }}</td>
-											<td>{{ $user->nik }}</td>
-											<td>{{ $user->nama }}</td>
-											<td>{{ $user->Departemen->namaDepartemen }}</td>
-											<td>{{ $user->email }}</td>
-											<td>{{ $user->tel }}</td>
-                      <td>
+											<td class="align-baseline">{{ $i }}</td>
+											<td class="align-baseline">{{ $user->nik }}</td>
+											<td class="align-baseline">{{ $user->nama }}</td>
+											<td class="align-baseline">{{ $user->Departemen->namaDepartemen }}</td>
+											<td class="align-baseline">{{ $user->email }}</td>
+											<td class="align-baseline">{{ $user->tel }}</td>
+                      <td class="align-baseline">
                         @if ($user->tipe == 'karyawan')
                           <span class="badge bg-success">{{ $user->tipe }}</span>  
                         @elseIf ($user->tipe == 'admin')
@@ -50,21 +51,22 @@
                         @endif
                       </td>
                       <td>
-                       
-                          <a href="/admin/user/edit/{{ $user->nik }}" class="btn btn-primary btn-sm"><i class="align-middle" data-feather="edit"></i></a>
-                          <form action="/admin/user/destroy/{{ $user->nik }}" method="post" class="d-inline">
-                            @method('delete')
-                            @csrf
-                            <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin?')"><i class="align-middle" data-feather="trash"></i></button>
-                          </form>
-                       
+                      @if ($user->nik != '123456789')
+                        <a href="/admin/user/edit/{{ $user->nik }}" class="btn btn-primary btn-sm"><i class="align-middle" data-feather="edit"></i></a>
+                        <form action="/admin/user/destroy/{{ $user->nik }}" method="post" class="d-inline">
+                          @method('delete')
+                          @csrf
+                          <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin?')"><i class="align-middle" data-feather="trash"></i></button>
+                        </form>
+                      @endif 
                         
                       </td>
 										</tr>
                     @php($i++)
                     @endforeach
                   </tbody>
-                </table> 
+                </table>  
+                </div>
               </div>
             </div>
           </div>
